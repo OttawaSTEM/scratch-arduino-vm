@@ -100,14 +100,14 @@ const DataType = {
 /**
  * Manage communication with a Arduino Nano peripheral over a Scratch Arduino Link client socket.
  */
-class ArduinoNano extends ArduinoPeripheral{
+class Arduino extends ArduinoPeripheral {
     /**
      * Construct a Arduino communication object.
      * @param {Runtime} runtime - the Scratch Arduino runtime
      * @param {string} deviceId - the id of the extension
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, deviceId, originalDeviceId) {
+    constructor(runtime, deviceId, originalDeviceId) {
         super(runtime, deviceId, originalDeviceId, PNPID_LIST, SERIAL_CONFIG, DIVECE_OPT);
     }
 }
@@ -119,11 +119,11 @@ class ArduinoNanoDevice {
     /**
      * @return {string} - the ID of this extension.
      */
-    static get DEVICE_ID () {
+    static get DEVICE_ID() {
         return 'arduinoNano';
     }
 
-    get PINS_MENU () {
+    get PINS_MENU() {
         return [
             {
                 text: '0',
@@ -208,7 +208,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get MODE_MENU () {
+    get MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -237,7 +237,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get DIGITAL_PINS_MENU () {
+    get DIGITAL_PINS_MENU() {
         return [
             {
                 text: '0',
@@ -298,7 +298,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get ANALOG_PINS_MENU () {
+    get ANALOG_PINS_MENU() {
         return [
             {
                 text: 'A0',
@@ -327,7 +327,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get LEVEL_MENU () {
+    get LEVEL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -348,7 +348,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get PWM_PINS_MENU () {
+    get PWM_PINS_MENU() {
         return [
             {
                 text: '3',
@@ -377,7 +377,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get INTERRUPT_PINS_MENU () {
+    get INTERRUPT_PINS_MENU() {
         return [
             {
                 text: '2',
@@ -390,7 +390,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get INTERRUP_MODE_MENU () {
+    get INTERRUP_MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -427,7 +427,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get BAUDTATE_MENU () {
+    get BAUDTATE_MENU() {
         return [
             {
                 text: '4800',
@@ -460,7 +460,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get EOL_MENU () {
+    get EOL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -481,7 +481,7 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get DATA_TYPE_MENU () {
+    get DATA_TYPE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -515,7 +515,7 @@ class ArduinoNanoDevice {
      * @param {Runtime} runtime - the Scratch Arduino runtime.
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, originalDeviceId) {
+    constructor(runtime, originalDeviceId) {
         /**
          * The Scratch Arduino runtime.
          * @type {Runtime}
@@ -523,13 +523,13 @@ class ArduinoNanoDevice {
         this.runtime = runtime;
 
         // Create a new Arduino nano peripheral instance
-        this._peripheral = new ArduinoNano(this.runtime, ArduinoNanoDevice.DEVICE_ID, originalDeviceId);
+        this._peripheral = new Arduino(this.runtime, ArduinoNanoDevice.DEVICE_ID, originalDeviceId);
     }
 
     /**
      * @returns {Array.<object>} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo() {
         return [
             {
                 id: 'pin',
@@ -635,6 +635,29 @@ class ArduinoNanoDevice {
                                 menu: 'analogPins',
                                 defaultValue: Pins.A0
                             }
+                        }
+                    },
+                    '---',
+                    {
+                        opcode: 'getDistance',
+                        text: formatMessage({
+                            id: 'arduino.pins.getDistance',
+                            default: 'Get distance',
+                            description: 'arduino get distance from ultrasonic'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                        }
+                    },
+                    {
+                        opcode: 'readDistance',
+                        text: formatMessage({
+                            id: 'arduino.pins.readDistance',
+                            default: 'distance CM',
+                            description: 'arduino read distance from ultrasonic'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        arguments: {
                         }
                     },
                     '---',
@@ -944,7 +967,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin mode is done.
      */
-    setPinMode (args) {
+    setPinMode(args) {
         this._peripheral.setPinMode(args.PIN, args.MODE);
         return Promise.resolve();
     }
@@ -954,7 +977,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin digital out level is done.
      */
-    setDigitalOutput (args) {
+    setDigitalOutput(args) {
         this._peripheral.setDigitalOutput(args.PIN, args.LEVEL);
         return Promise.resolve();
     }
@@ -964,7 +987,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin pwm out value is done.
      */
-    setPwmOutput (args) {
+    setPwmOutput(args) {
         this._peripheral.setPwmOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }
@@ -974,7 +997,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {boolean} - true if read high level, false if read low level.
      */
-    readDigitalPin (args) {
+    readDigitalPin(args) {
         return this._peripheral.readDigitalPin(args.PIN);
     }
 
@@ -983,7 +1006,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {number} - analog value fo the pin.
      */
-    readAnalogPin (args) {
+    readAnalogPin(args) {
         return this._peripheral.readAnalogPin(args.PIN);
     }
 
@@ -992,7 +1015,7 @@ class ArduinoNanoDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set servo out value is done.
      */
-    setServoOutput (args) {
+    setServoOutput(args) {
         this._peripheral.setServoOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }

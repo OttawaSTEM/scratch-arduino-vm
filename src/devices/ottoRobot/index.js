@@ -100,14 +100,14 @@ const DataType = {
 /**
  * Manage communication with a Arduino Nano peripheral over a Scratch Arduino Link client socket.
  */
-class ArduinoNano extends ArduinoPeripheral{
+class Arduino extends ArduinoPeripheral {
     /**
      * Construct a Arduino communication object.
      * @param {Runtime} runtime - the Scratch Arduino runtime
      * @param {string} deviceId - the id of the extension
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, deviceId, originalDeviceId) {
+    constructor(runtime, deviceId, originalDeviceId) {
         super(runtime, deviceId, originalDeviceId, PNPID_LIST, SERIAL_CONFIG, DIVECE_OPT);
     }
 }
@@ -119,11 +119,11 @@ class ArduinoOttoRobotDevice {
     /**
      * @return {string} - the ID of this extension.
      */
-    static get DEVICE_ID () {
+    static get DEVICE_ID() {
         return 'ottoRobot';
     }
 
-    get DANCES_MENU () {
+    get DANCES_MENU() {
         return [
             {
                 text: 'Feeling Good',
@@ -140,7 +140,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get GESTURES_MENU () {
+    get GESTURES_MENU() {
         return [
             {
                 text: 'Angry',
@@ -197,7 +197,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get SOUNDS_MENU () {
+    get SOUNDS_MENU() {
         return [
             {
                 text: 'Button Pressed',
@@ -278,7 +278,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get TONES_MENU () {
+    get TONES_MENU() {
         return [
             {
                 text: 'C0',
@@ -683,7 +683,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get MOVES_MENU () {
+    get MOVES_MENU() {
         return [
             {
                 text: 'Forward',
@@ -704,7 +704,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get ACTIONS_MENU () {
+    get ACTIONS_MENU() {
         return [
             {
                 text: 'Ascending Turn',
@@ -717,7 +717,7 @@ class ArduinoOttoRobotDevice {
             {
                 text: 'Bend Right Foot',
                 value: 'Bend Right Foot'
-            },            
+            },
             {
                 text: 'Crusaito Forward',
                 value: 'Crusaito Forward'
@@ -773,7 +773,7 @@ class ArduinoOttoRobotDevice {
         ]
     }
 
-    get PINS_MENU () {
+    get PINS_MENU() {
         return [
             {
                 text: '0',
@@ -858,7 +858,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get MODE_MENU () {
+    get MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -887,7 +887,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get DIGITAL_PINS_MENU () {
+    get DIGITAL_PINS_MENU() {
         return [
             {
                 text: '0',
@@ -948,7 +948,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get ANALOG_PINS_MENU () {
+    get ANALOG_PINS_MENU() {
         return [
             {
                 text: 'A0',
@@ -977,7 +977,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get LEVEL_MENU () {
+    get LEVEL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -998,7 +998,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get PWM_PINS_MENU () {
+    get PWM_PINS_MENU() {
         return [
             {
                 text: '3',
@@ -1027,7 +1027,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get INTERRUPT_PINS_MENU () {
+    get INTERRUPT_PINS_MENU() {
         return [
             {
                 text: '2',
@@ -1040,7 +1040,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get INTERRUP_MODE_MENU () {
+    get INTERRUP_MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1077,7 +1077,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get BAUDTATE_MENU () {
+    get BAUDTATE_MENU() {
         return [
             {
                 text: '4800',
@@ -1110,7 +1110,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get EOL_MENU () {
+    get EOL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1131,7 +1131,7 @@ class ArduinoOttoRobotDevice {
         ];
     }
 
-    get DATA_TYPE_MENU () {
+    get DATA_TYPE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1165,7 +1165,7 @@ class ArduinoOttoRobotDevice {
      * @param {Runtime} runtime - the Scratch Arduino runtime.
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, originalDeviceId) {
+    constructor(runtime, originalDeviceId) {
         /**
          * The Scratch Arduino runtime.
          * @type {Runtime}
@@ -1173,13 +1173,13 @@ class ArduinoOttoRobotDevice {
         this.runtime = runtime;
 
         // Create a new Arduino nano peripheral instance
-        this._peripheral = new ArduinoNano(this.runtime, ArduinoOttoRobotDevice.DEVICE_ID, originalDeviceId);
+        this._peripheral = new Arduino(this.runtime, ArduinoOttoRobotDevice.DEVICE_ID, originalDeviceId);
     }
 
     /**
      * @returns {Array.<object>} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo() {
         return [
             {
                 id: 'ottoRobot',
@@ -1266,11 +1266,11 @@ class ArduinoOttoRobotDevice {
                     },
                     '---',
                     {
-                        opcode: 'setDistance',
+                        opcode: 'getDistance',
                         text: formatMessage({
-                            id: 'arduino.pins.setDistance',
+                            id: 'arduino.pins.getDistance',
                             default: 'Get distance',
-                            description: 'arduino set distance from ultrasonic'
+                            description: 'arduino get distance from ultrasonic'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
@@ -1665,7 +1665,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin mode is done.
      */
-    setPinMode (args) {
+    setPinMode(args) {
         this._peripheral.setPinMode(args.PIN, args.MODE);
         return Promise.resolve();
     }
@@ -1675,7 +1675,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin digital out level is done.
      */
-    setDigitalOutput (args) {
+    setDigitalOutput(args) {
         this._peripheral.setDigitalOutput(args.PIN, args.LEVEL);
         return Promise.resolve();
     }
@@ -1685,7 +1685,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin pwm out value is done.
      */
-    setPwmOutput (args) {
+    setPwmOutput(args) {
         this._peripheral.setPwmOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }
@@ -1695,7 +1695,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {boolean} - true if read high level, false if read low level.
      */
-    readDigitalPin (args) {
+    readDigitalPin(args) {
         return this._peripheral.readDigitalPin(args.PIN);
     }
 
@@ -1704,7 +1704,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {number} - analog value fo the pin.
      */
-    readAnalogPin (args) {
+    readAnalogPin(args) {
         return this._peripheral.readAnalogPin(args.PIN);
     }
 
@@ -1713,7 +1713,7 @@ class ArduinoOttoRobotDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set servo out value is done.
      */
-    setServoOutput (args) {
+    setServoOutput(args) {
         this._peripheral.setServoOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }

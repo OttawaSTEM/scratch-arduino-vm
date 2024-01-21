@@ -35,151 +35,6 @@ const DIVECE_OPT = {
     firmware: 'arduinoNano.standardFirmata.ino.hex'
 };
 
-const Colors = {
-    AliceBlue: 'AliceBlue',
-    Amethyst: 'Amethyst',
-    AntiqueWhite: 'AntiqueWhite',
-    Aqua: 'Aqua',
-    Aquamarine: 'Aquamarine',
-    Azure: 'Azure',
-    Beige: 'Beige',
-    Bisque: 'Bisque',
-    Black: 'Black',
-    BlanchedAlmond: 'BlanchedAlmond',
-    Blue: 'Blue',
-    BlueViolet: 'BlueViolet',
-    Brown: 'Brown',
-    BurlyWood: 'BurlyWood',
-    CadetBlue: 'CadetBlue',
-    Chartreuse: 'Chartreuse',
-    Chocolate: 'Chocolate',
-    Coral: 'Coral',
-    CornflowerBlue: 'CornflowerBlue',
-    Cornsilk: 'Cornsilk',
-    Crimson: 'Crimson',
-    Cyan: 'Cyan',
-    DarkBlue: 'DarkBlue',
-    DarkCyan: 'DarkCyan',
-    DarkGoldenrod: 'DarkGoldenrod',
-    DarkGray: 'DarkGray',
-    DarkGreen: 'DarkGreen',
-    DarkKhaki: 'DarkKhaki',
-    DarkMagenta: 'DarkMagenta',
-    DarkOliveGreen: 'DarkOliveGreen',
-    DarkOrange: 'DarkOrange',
-    DarkOrchid: 'DarkOrchid',
-    DarkRed: 'DarkRed',
-    DarkSalmon: 'DarkSalmon',
-    DarkSeaGreen: 'DarkSeaGreen',
-    DarkSlateBlue: 'DarkSlateBlue',
-    DarkSlateGray: 'DarkSlateGray',
-    DarkTurquoise: 'DarkTurquoise',
-    DarkViolet: 'DarkViolet',
-    DeepPink: 'DeepPink',
-    DeepSkyBlue: 'DeepSkyBlue',
-    DimGray: 'DimGray',
-    DodgerBlue: 'DodgerBlue',
-    FireBrick: 'FireBrick',
-    FloralWhite: 'FloralWhite',
-    ForestGreen: 'ForestGreen',
-    Fuchsia: 'Fuchsia',
-    Gainsboro: 'Gainsboro',
-    GhostWhite: 'GhostWhite',
-    Gold: 'Gold',
-    Goldenrod: 'Goldenrod',
-    Gray: 'Gray',
-    Green: 'Green',
-    GreenYellow: 'GreenYellow',
-    Honeydew: 'Honeydew',
-    HotPink: 'HotPink',
-    IndianRed: 'IndianRed',
-    Indigo: 'Indigo',
-    Ivory: 'Ivory',
-    Khaki: 'Khaki',
-    Lavender: 'Lavender',
-    LavenderBlush: 'LavenderBlush',
-    LawnGreen: 'LawnGreen',
-    LemonChiffon: 'LemonChiffon',
-    LightBlue: 'LightBlue',
-    LightCoral: 'LightCoral',
-    LightCyan: 'LightCyan',
-    LightGoldenrodYellow: 'LightGoldenrodYellow',
-    LightGreen: 'LightGreen',
-    LightGrey: 'LightGrey',
-    LightPink: 'LightPink',
-    LightSalmon: 'LightSalmon',
-    LightSeaGreen: 'LightSeaGreen',
-    LightSkyBlue: 'LightSkyBlue',
-    LightSlateGray: 'LightSlateGray',
-    LightSteelBlue: 'LightSteelBlue',
-    LightYellow: 'LightYellow',
-    Lime: 'Lime',
-    LimeGreen: 'LimeGreen',
-    Linen: 'Linen',
-    Magenta: 'Magenta',
-    Maroon: 'Maroon',
-    MediumAquamarine: 'MediumAquamarine',
-    MediumBlue: 'MediumBlue',
-    MediumOrchid: 'MediumOrchid',
-    MediumPurple: 'MediumPurple',
-    MediumSeaGreen: 'MediumSeaGreen',
-    MediumSlateBlue: 'MediumSlateBlue',
-    MediumSpringGreen: 'MediumSpringGreen',
-    MediumTurquoise: 'MediumTurquoise',
-    MediumVioletRed: 'MediumVioletRed',
-    MidnightBlue: 'MidnightBlue',
-    MintCream: 'MintCream',
-    MistyRose: 'MistyRose',
-    Moccasin: 'Moccasin',
-    NavajoWhite: 'NavajoWhite',
-    Navy: 'Navy',
-    OldLace: 'OldLace',
-    Olive: 'Olive',
-    OliveDrab: 'OliveDrab',
-    Orange: 'Orange',
-    OrangeRed: 'OrangeRed',
-    Orchid: 'Orchid',
-    PaleGoldenrod: 'PaleGoldenrod',
-    PaleGreen: 'PaleGreen',
-    PaleTurquoise: 'PaleTurquoise',
-    PaleVioletRed: 'PaleVioletRed',
-    PapayaWhip: 'PapayaWhip',
-    PeachPuff: 'PeachPuff',
-    Peru: 'Peru',
-    Pink: 'Pink',
-    Plaid: 'Plaid',
-    Plum: 'Plum',
-    PowderBlue: 'PowderBlue',
-    Purple: 'Purple',
-    Red: 'Red',
-    RosyBrown: 'RosyBrown',
-    RoyalBlue: 'RoyalBlue',
-    SaddleBrown: 'SaddleBrown',
-    Salmon: 'Salmon',
-    SandyBrown: 'SandyBrown',
-    SeaGreen: 'SeaGreen',
-    Seashell: 'Seashell',
-    Sienna: 'Sienna',
-    Silver: 'Silver',
-    SkyBlue: 'SkyBlue',
-    SlateBlue: 'SlateBlue',
-    SlateGray: 'SlateGray',
-    Snow: 'Snow',
-    SpringGreen: 'SpringGreen',
-    SteelBlue: 'SteelBlue',
-    Tan: 'Tan',
-    Teal: 'Teal',
-    Thistle: 'Thistle',
-    Tomato: 'Tomato',
-    Turquoise: 'Turquoise',
-    Violet: 'Violet',
-    Wheat: 'Wheat',
-    White: 'White',
-    WhiteSmoke: 'WhiteSmoke',
-    Yellow: 'Yellow',
-    YellowGreen: 'YellowGreen'
-};
-
 const Pins = {
     D0: '0',
     D1: '1',
@@ -206,6 +61,12 @@ const Pins = {
 const Level = {
     High: 'HIGH',
     Low: 'LOW'
+};
+
+const SerialNo = {
+    Serial0: '0',
+    Serial1: '1',
+    Serial2: '2'
 };
 
 const Buadrate = {
@@ -267,579 +128,6 @@ class ArduinoNokia5110Device {
     static get DEVICE_ID() {
         return 'nokia5110';
     }
-
-    // get COLORS_MENU() {
-    //     return [
-    //         {
-    //             text: '1. AliceBlue',
-    //             value: Colors.AliceBlue
-    //         },
-    //         {
-    //             text: '2. Amethyst',
-    //             value: Colors.Amethyst
-    //         },
-    //         {
-    //             text: '3. AntiqueWhite',
-    //             value: Colors.AntiqueWhite
-    //         },
-    //         {
-    //             text: '4. Aqua',
-    //             value: Colors.Aqua
-    //         },
-    //         {
-    //             text: '5. Aquamarine',
-    //             value: Colors.Aquamarine
-    //         },
-    //         {
-    //             text: '6. Azure',
-    //             value: Colors.Azure
-    //         },
-    //         {
-    //             text: '7. Beige',
-    //             value: Colors.Beige
-    //         },
-    //         {
-    //             text: '8. Bisque',
-    //             value: Colors.Bisque
-    //         },
-    //         {
-    //             text: '9. Black',
-    //             value: Colors.Black
-    //         },
-    //         {
-    //             text: '10. BlanchedAlmond',
-    //             value: Colors.BlanchedAlmond
-    //         },
-    //         {
-    //             text: '11. Blue',
-    //             value: Colors.Blue
-    //         },
-    //         {
-    //             text: '12. BlueViolet',
-    //             value: Colors.BlueViolet
-    //         },
-    //         {
-    //             text: '13. Brown',
-    //             value: Colors.Brown
-    //         },
-    //         {
-    //             text: '14. BurlyWood',
-    //             value: Colors.BurlyWood
-    //         },
-    //         {
-    //             text: '15. CadetBlue',
-    //             value: Colors.CadetBlue
-    //         },
-    //         {
-    //             text: '16. Chartreuse',
-    //             value: Colors.Chartreuse
-    //         },
-    //         {
-    //             text: '17. Chocolate',
-    //             value: Colors.Chocolate
-    //         },
-    //         {
-    //             text: '18. Coral',
-    //             value: Colors.Coral
-    //         },
-    //         {
-    //             text: '19. CornflowerBlue',
-    //             value: Colors.CornflowerBlue
-    //         },
-    //         {
-    //             text: '20. Cornsilk',
-    //             value: Colors.Cornsilk
-    //         },
-    //         {
-    //             text: '21. Crimson',
-    //             value: Colors.Crimson
-    //         },
-    //         {
-    //             text: '22. Cyan',
-    //             value: Colors.Cyan
-    //         },
-    //         {
-    //             text: '23. DarkBlue',
-    //             value: Colors.DarkBlue
-    //         },
-    //         {
-    //             text: '24. DarkCyan',
-    //             value: Colors.DarkCyan
-    //         },
-    //         {
-    //             text: '25. DarkGoldenrod',
-    //             value: Colors.DarkGoldenrod
-    //         },
-    //         {
-    //             text: '26. DarkGray',
-    //             value: Colors.DarkGray
-    //         },
-    //         {
-    //             text: '27. DarkGreen',
-    //             value: Colors.DarkGreen
-    //         },
-    //         {
-    //             text: '28. DarkKhaki',
-    //             value: Colors.DarkKhaki
-    //         },
-    //         {
-    //             text: '29. DarkMagenta',
-    //             value: Colors.DarkMagenta
-    //         },
-    //         {
-    //             text: '30. DarkOliveGreen',
-    //             value: Colors.DarkOliveGreen
-    //         },
-    //         {
-    //             text: '31. DarkOrange',
-    //             value: Colors.DarkOrange
-    //         },
-    //         {
-    //             text: '32. DarkOrchid',
-    //             value: Colors.DarkOrchid
-    //         },
-    //         {
-    //             text: '33. DarkRed',
-    //             value: Colors.DarkRed
-    //         },
-    //         {
-    //             text: '34. DarkSalmon',
-    //             value: Colors.DarkSalmon
-    //         },
-    //         {
-    //             text: '35. DarkSeaGreen',
-    //             value: Colors.DarkSeaGreen
-    //         },
-    //         {
-    //             text: '36. DarkSlateBlue',
-    //             value: Colors.DarkSlateBlue
-    //         },
-    //         {
-    //             text: '37. DarkSlateGray',
-    //             value: Colors.DarkSlateGray
-    //         },
-    //         {
-    //             text: '38. DarkTurquoise',
-    //             value: Colors.DarkTurquoise
-    //         },
-    //         {
-    //             text: '39. DarkViolet',
-    //             value: Colors.DarkViolet
-    //         },
-    //         {
-    //             text: '40. DeepPink',
-    //             value: Colors.DeepPink
-    //         },
-    //         {
-    //             text: '41. DeepSkyBlue',
-    //             value: Colors.DeepSkyBlue
-    //         },
-    //         {
-    //             text: '42. DimGray',
-    //             value: Colors.DimGray
-    //         },
-    //         {
-    //             text: '43. DodgerBlue',
-    //             value: Colors.DodgerBlue
-    //         },
-    //         {
-    //             text: '44. FireBrick',
-    //             value: Colors.FireBrick
-    //         },
-    //         {
-    //             text: '45. FloralWhite',
-    //             value: Colors.FloralWhite
-    //         },
-    //         {
-    //             text: '46. ForestGreen',
-    //             value: Colors.ForestGreen
-    //         },
-    //         {
-    //             text: '47. Fuchsia',
-    //             value: Colors.Fuchsia
-    //         },
-    //         {
-    //             text: '48. Gainsboro',
-    //             value: Colors.Gainsboro
-    //         },
-    //         {
-    //             text: '49. GhostWhite',
-    //             value: Colors.GhostWhite
-    //         },
-    //         {
-    //             text: '50. Gold',
-    //             value: Colors.Gold
-    //         },
-    //         {
-    //             text: '51. Goldenrod',
-    //             value: Colors.Goldenrod
-    //         },
-    //         {
-    //             text: '52. Gray',
-    //             value: Colors.Gray
-    //         },
-    //         {
-    //             text: '53. Green',
-    //             value: Colors.Green
-    //         },
-    //         {
-    //             text: '54. GreenYellow',
-    //             value: Colors.GreenYellow
-    //         },
-    //         {
-    //             text: '55. Honeydew',
-    //             value: Colors.Honeydew
-    //         },
-    //         {
-    //             text: '56. HotPink',
-    //             value: Colors.HotPink
-    //         },
-    //         {
-    //             text: '57. IndianRed',
-    //             value: Colors.IndianRed
-    //         },
-    //         {
-    //             text: '58. Indigo',
-    //             value: Colors.Indigo
-    //         },
-    //         {
-    //             text: '59. Ivory',
-    //             value: Colors.Ivory
-    //         },
-    //         {
-    //             text: '60. Khaki',
-    //             value: Colors.Khaki
-    //         },
-    //         {
-    //             text: '61. Lavender',
-    //             value: Colors.Lavender
-    //         },
-    //         {
-    //             text: '62. LavenderBlush',
-    //             value: Colors.LavenderBlush
-    //         },
-    //         {
-    //             text: '63. LawnGreen',
-    //             value: Colors.LawnGreen
-    //         },
-    //         {
-    //             text: '64. LemonChiffon',
-    //             value: Colors.LemonChiffon
-    //         },
-    //         {
-    //             text: '65. LightBlue',
-    //             value: Colors.LightBlue
-    //         },
-    //         {
-    //             text: '66. LightCoral',
-    //             value: Colors.LightCoral
-    //         },
-    //         {
-    //             text: '67. LightCyan',
-    //             value: Colors.LightCyan
-    //         },
-    //         {
-    //             text: '68. LightGoldenrodYellow',
-    //             value: Colors.LightGoldenrodYellow
-    //         },
-    //         {
-    //             text: '69. LightGreen',
-    //             value: Colors.LightGreen
-    //         },
-    //         {
-    //             text: '70. LightGrey',
-    //             value: Colors.LightGrey
-    //         },
-    //         {
-    //             text: '71. LightPink',
-    //             value: Colors.LightPink
-    //         },
-    //         {
-    //             text: '72. LightSalmon',
-    //             value: Colors.LightSalmon
-    //         },
-    //         {
-    //             text: '73. LightSeaGreen',
-    //             value: Colors.LightSeaGreen
-    //         },
-    //         {
-    //             text: '74. LightSkyBlue',
-    //             value: Colors.LightSkyBlue
-    //         },
-    //         {
-    //             text: '75. LightSlateGray',
-    //             value: Colors.LightSlateGray
-    //         },
-    //         {
-    //             text: '76. LightSteelBlue',
-    //             value: Colors.LightSteelBlue
-    //         },
-    //         {
-    //             text: '77. LightYellow',
-    //             value: Colors.LightYellow
-    //         },
-    //         {
-    //             text: '78. Lime',
-    //             value: Colors.Lime
-    //         },
-    //         {
-    //             text: '79. LimeGreen',
-    //             value: Colors.LimeGreen
-    //         },
-    //         {
-    //             text: '80. Linen',
-    //             value: Colors.Linen
-    //         },
-    //         {
-    //             text: '81. Magenta',
-    //             value: Colors.Magenta
-    //         },
-    //         {
-    //             text: '82. Maroon',
-    //             value: Colors.Maroon
-    //         },
-    //         {
-    //             text: '83. MediumAquamarine',
-    //             value: Colors.MediumAquamarine
-    //         },
-    //         {
-    //             text: '84. MediumBlue',
-    //             value: Colors.MediumBlue
-    //         },
-    //         {
-    //             text: '85. MediumOrchid',
-    //             value: Colors.MediumOrchid
-    //         },
-    //         {
-    //             text: '86. MediumPurple',
-    //             value: Colors.MediumPurple
-    //         },
-    //         {
-    //             text: '87. MediumSeaGreen',
-    //             value: Colors.MediumSeaGreen
-    //         },
-    //         {
-    //             text: '88. MediumSlateBlue',
-    //             value: Colors.MediumSlateBlue
-    //         },
-    //         {
-    //             text: '89. MediumSpringGreen',
-    //             value: Colors.MediumSpringGreen
-    //         },
-    //         {
-    //             text: '90. MediumTurquoise',
-    //             value: Colors.MediumTurquoise
-    //         },
-    //         {
-    //             text: '91. MediumVioletRed',
-    //             value: Colors.MediumVioletRed
-    //         },
-    //         {
-    //             text: '92. MidnightBlue',
-    //             value: Colors.MidnightBlue
-    //         },
-    //         {
-    //             text: '93. MintCream',
-    //             value: Colors.MintCream
-    //         },
-    //         {
-    //             text: '94. MistyRose',
-    //             value: Colors.MistyRose
-    //         },
-    //         {
-    //             text: '95. Moccasin',
-    //             value: Colors.Moccasin
-    //         },
-    //         {
-    //             text: '96. NavajoWhite',
-    //             value: Colors.NavajoWhite
-    //         },
-    //         {
-    //             text: '97. Navy',
-    //             value: Colors.Navy
-    //         },
-    //         {
-    //             text: '98. OldLace',
-    //             value: Colors.OldLace
-    //         },
-    //         {
-    //             text: '99. Olive',
-    //             value: Colors.Olive
-    //         },
-    //         {
-    //             text: '100. OliveDrab',
-    //             value: Colors.OliveDrab
-    //         },
-    //         {
-    //             text: '101. Orange',
-    //             value: Colors.Orange
-    //         },
-    //         {
-    //             text: '102. OrangeRed',
-    //             value: Colors.OrangeRed
-    //         },
-    //         {
-    //             text: '103. Orchid',
-    //             value: Colors.Orchid
-    //         },
-    //         {
-    //             text: '104. PaleGoldenrod',
-    //             value: Colors.PaleGoldenrod
-    //         },
-    //         {
-    //             text: '105. PaleGreen',
-    //             value: Colors.PaleGreen
-    //         },
-    //         {
-    //             text: '106. PaleTurquoise',
-    //             value: Colors.PaleTurquoise
-    //         },
-    //         {
-    //             text: '107. PaleVioletRed',
-    //             value: Colors.PaleVioletRed
-    //         },
-    //         {
-    //             text: '108. PapayaWhip',
-    //             value: Colors.PapayaWhip
-    //         },
-    //         {
-    //             text: '109. PeachPuff',
-    //             value: Colors.PeachPuff
-    //         },
-    //         {
-    //             text: '110. Peru',
-    //             value: Colors.Peru
-    //         },
-    //         {
-    //             text: '111. Pink',
-    //             value: Colors.Pink
-    //         },
-    //         {
-    //             text: '112. Plaid',
-    //             value: Colors.Plaid
-    //         },
-    //         {
-    //             text: '113. Plum',
-    //             value: Colors.Plum
-    //         },
-    //         {
-    //             text: '114. PowderBlue',
-    //             value: Colors.PowderBlue
-    //         },
-    //         {
-    //             text: '115. Purple',
-    //             value: Colors.Purple
-    //         },
-    //         {
-    //             text: '116. Red',
-    //             value: Colors.Red
-    //         },
-    //         {
-    //             text: '117. RosyBrown',
-    //             value: Colors.RosyBrown
-    //         },
-    //         {
-    //             text: '118. RoyalBlue',
-    //             value: Colors.RoyalBlue
-    //         },
-    //         {
-    //             text: '119. SaddleBrown',
-    //             value: Colors.SaddleBrown
-    //         },
-    //         {
-    //             text: '120. Salmon',
-    //             value: Colors.Salmon
-    //         },
-    //         {
-    //             text: '121. SandyBrown',
-    //             value: Colors.SandyBrown
-    //         },
-    //         {
-    //             text: '122. SeaGreen',
-    //             value: Colors.SeaGreen
-    //         },
-    //         {
-    //             text: '123. Seashell',
-    //             value: Colors.Seashell
-    //         },
-    //         {
-    //             text: '124. Sienna',
-    //             value: Colors.Sienna
-    //         },
-    //         {
-    //             text: '125. Silver',
-    //             value: Colors.Silver
-    //         },
-    //         {
-    //             text: '126. SkyBlue',
-    //             value: Colors.SkyBlue
-    //         },
-    //         {
-    //             text: '127. SlateBlue',
-    //             value: Colors.SlateBlue
-    //         },
-    //         {
-    //             text: '128. SlateGray',
-    //             value: Colors.SlateGray
-    //         },
-    //         {
-    //             text: '129. Snow',
-    //             value: Colors.Snow
-    //         },
-    //         {
-    //             text: '130. SpringGreen',
-    //             value: Colors.SpringGreen
-    //         },
-    //         {
-    //             text: '131. SteelBlue',
-    //             value: Colors.SteelBlue
-    //         },
-    //         {
-    //             text: '132. Tan',
-    //             value: Colors.Tan
-    //         },
-    //         {
-    //             text: '133. Teal',
-    //             value: Colors.Teal
-    //         },
-    //         {
-    //             text: '134. Thistle',
-    //             value: Colors.Thistle
-    //         },
-    //         {
-    //             text: '135. Tomato',
-    //             value: Colors.Tomato
-    //         },
-    //         {
-    //             text: '136. Turquoise',
-    //             value: Colors.Turquoise
-    //         },
-    //         {
-    //             text: '137. Violet',
-    //             value: Colors.Violet
-    //         },
-    //         {
-    //             text: '138. Wheat',
-    //             value: Colors.Wheat
-    //         },
-    //         {
-    //             text: '139. White',
-    //             value: Colors.White
-    //         },
-    //         {
-    //             text: '140. WhiteSmoke',
-    //             value: Colors.WhiteSmoke
-    //         },
-    //         {
-    //             text: '141. Yellow',
-    //             value: Colors.Yellow
-    //         },
-    //         {
-    //             text: '142. YellowGreen',
-    //             value: Colors.YellowGreen
-    //         }
-    //     ];
-    // }
 
     get PINS_MENU() {
         return [
@@ -1249,310 +537,202 @@ class ArduinoNokia5110Device {
      */
     getInfo() {
         return [
-            // {
-            //     id: 'fastled',
-            //     name: formatMessage({
-            //         id: 'arduino.category.fastled',
-            //         default: 'LED',
-            //         description: 'The name of the LED in verital block'
-            //     }),
-            //     color1: '#009297',
-            //     color2: '#004B4C',
-            //     color3: '#004B4C',
-            //     menuIconURI: 'data:image/png;base64,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',
-            //     blockIconURI: 'data:image/png;base64,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',
-            //     blocks: [
-            //         {
-            //             opcode: 'setLEDNumber',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDNumber',
-            //                 default: 'set LED number [NUMBER]',
-            //                 description: 'arduino set number of LED'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 NUMBER: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 5
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setBrightness',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setBrightness',
-            //                 default: 'set LED brightness [NUMBER]',
-            //                 description: 'arduino set brightness of LED'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 NUMBER: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 10
-            //                 }
-            //             }
-            //         },
-            //         '---',
-            //         {
-            //             opcode: 'setAllLEDColor',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setAllLEDColor',
-            //                 default: 'set all LED color to [COLOR]',
-            //                 description: 'arduino set all LED Color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 COLOR: {
-            //                     type: ArgumentType.STRING,
-            //                     menu: 'colors',
-            //                     defaultValue: Colors.AliceBlue
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setAllLEDColorHSV',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setAllLEDColorHSV',
-            //                 default: 'set all LED color to [COLOR]',
-            //                 description: 'arduino set All LED Color (HSV -> RGB)'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 COLOR: {
-            //                     type: ArgumentType.COLOR,
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setAllLEDColorRGB',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setAllLEDColorRGB',
-            //                 default: 'set all LED color to Red [RED] Green[GREEN] Blue [BLUE]',
-            //                 description: 'arduino set All LED RGB Color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 RED: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 },
-            //                 GREEN: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 },
-            //                 BLUE: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setLEDColorGradient',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDColorGradient',
-            //                 default: 'set all LED color from [COLOR_FROM] to [COLOR_TO]',
-            //                 description: 'arduino set LED gradient color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 COLOR_FROM: {
-            //                     type: ArgumentType.STRING,
-            //                     menu: 'colors',
-            //                     defaultValue: Colors.AliceBlue
-            //                 },
-            //                 COLOR_TO: {
-            //                     type: ArgumentType.STRING,
-            //                     menu: 'colors',
-            //                     defaultValue: Colors.Red
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setLEDColorRainbow',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDColorRainbow',
-            //                 default: 'set all LED rainbow color in [MILLISECOND] millisecond',
-            //                 description: 'arduino set LED rainbow color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 MILLISECOND: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 150
-            //                 }
-            //             }
-            //         },
-            //         '---',
-            //         {
-            //             opcode: 'setLEDColor',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDColor',
-            //                 default: 'set LED [NUMBER] color to [COLOR]',
-            //                 description: 'arduino set LED Color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 NUMBER: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 0
-            //                 },
-            //                 COLOR: {
-            //                     type: ArgumentType.STRING,
-            //                     menu: 'colors',
-            //                     defaultValue: Colors.AliceBlue
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setLEDColorHSV',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDColorHSV',
-            //                 default: 'set LED [NUMBER] color to [COLOR]',
-            //                 description: 'arduino set LED RGB Color (HSV -> RGB)'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 NUMBER: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 0
-            //                 },
-            //                 COLOR: {
-            //                     type: ArgumentType.COLOR,
-            //                 },
-            //             }
-            //         },
-            //         {
-            //             opcode: 'setLEDColorRGB',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.setLEDColorRGB',
-            //                 default: 'set LED [NUMBER] color to Red [RED] Green[GREEN] Blue [BLUE]',
-            //                 description: 'arduino set LED RGB Color'
-            //             }),
-            //             blockType: BlockType.COMMAND,
-            //             arguments: {
-            //                 NUMBER: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 0
-            //                 },
-            //                 RED: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 },
-            //                 GREEN: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 },
-            //                 BLUE: {
-            //                     type: ArgumentType.UINT8_NUMBER,
-            //                     defaultValue: 255
-            //                 }
-            //             }
-            //         },
-            //         '---',
-            //         {
-            //             opcode: 'repeat',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.repeat',
-            //                 default: 'repeat " i " LED',
-            //                 description: 'arduino for i loop'
-            //             }),
-            //             blockType: BlockType.LOOP,
-            //             arguments: {
-            //             }
-            //         },
-            //         '---',
-            //         {
-            //             opcode: 'repeat_n_ms',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.repeat_n_ms',
-            //                 default: 'repeat in [MILLISECOND] milliseconds',
-            //                 description: 'arduino FastLED Recurring event trigger in millisecond'
-            //             }),
-            //             blockType: BlockType.LOOP,
-            //             arguments: {
-            //                 MILLISECOND: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 1
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'repeat_n_s',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.repeat_n_s',
-            //                 default: 'repeat in [SECOND] seconds',
-            //                 description: 'arduino FastLED Recurring event trigger in second'
-            //             }),
-            //             blockType: BlockType.LOOP,
-            //             arguments: {
-            //                 SECOND: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 1
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'repeat_n_min',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.repeat_n_min',
-            //                 default: 'repeat in [MINTUE] mintues',
-            //                 description: 'arduino FastLED Recurring event trigger in mintue'
-            //             }),
-            //             blockType: BlockType.LOOP,
-            //             arguments: {
-            //                 MINTUE: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 1
-            //                 }
-            //             }
-            //         },
-            //         {
-            //             opcode: 'repeat_n_hour',
-            //             text: formatMessage({
-            //                 id: 'arduino.fastled.repeat_n_hour',
-            //                 default: 'repeat in [HOUR] hours',
-            //                 description: 'arduino FastLED Recurring event trigger in hour'
-            //             }),
-            //             blockType: BlockType.LOOP,
-            //             arguments: {
-            //                 HOUR: {
-            //                     type: ArgumentType.NUMBER,
-            //                     defaultValue: 1
-            //                 }
-            //             }
-            //         },
-            //     ],
-            //     menus: {
-            //         colors: {
-            //             items: this.COLORS_MENU
-            //         },
-            //         pins: {
-            //             items: this.PINS_MENU
-            //         },
-            //         mode: {
-            //             items: this.MODE_MENU
-            //         },
-            //         digitalPins: {
-            //             items: this.DIGITAL_PINS_MENU
-            //         },
-            //         analogPins: {
-            //             items: this.ANALOG_PINS_MENU
-            //         },
-            //         level: {
-            //             acceptReporters: true,
-            //             items: this.LEVEL_MENU
-            //         },
-            //         pwmPins: {
-            //             items: this.PWM_PINS_MENU
-            //         },
-            //         interruptPins: {
-            //             items: this.INTERRUPT_PINS_MENU
-            //         },
-            //         interruptMode: {
-            //             items: this.INTERRUP_MODE_MENU
-            //         }
-            //     }
-            // },
+            {
+                id: 'pin',
+                name: formatMessage({
+                    id: 'arduino.category.pins',
+                    default: 'Pins',
+                    description: 'The name of the arduino device pin category'
+                }),
+                color1: '#009297',
+                color2: '#004B4C',
+                color3: '#004B4C',
+                blocks: [
+                    {
+                        opcode: 'setPinMode',
+                        text: formatMessage({
+                            id: 'arduino.pins.setPinMode',
+                            default: 'set pin [PIN] mode [MODE]',
+                            description: 'arduino set pin mode'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pins',
+                                defaultValue: Pins.D0
+                            },
+                            MODE: {
+                                type: ArgumentType.STRING,
+                                menu: 'mode',
+                                defaultValue: Mode.Input
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'setDigitalOutput',
+                        text: formatMessage({
+                            id: 'arduino.pins.setDigitalOutput',
+                            default: 'set digital pin [PIN] out [LEVEL]',
+                            description: 'arduino set digital pin out'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pins',
+                                defaultValue: Pins.D0
+                            },
+                            LEVEL: {
+                                type: ArgumentType.STRING,
+                                menu: 'level',
+                                defaultValue: Level.High
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'setPwmOutput',
+                        text: formatMessage({
+                            id: 'arduino.pins.setPwmOutput',
+                            default: 'set pwm pin [PIN] out [OUT]',
+                            description: 'arduino set pwm pin out'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pwmPins',
+                                defaultValue: Pins.D3
+                            },
+                            OUT: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '255'
+                            }
+                        }
+                    },
+                    '---',
+                    {
+                        opcode: 'readDigitalPin',
+                        text: formatMessage({
+                            id: 'arduino.pins.readDigitalPin',
+                            default: 'read digital pin [PIN]',
+                            description: 'arduino read digital pin'
+                        }),
+                        blockType: BlockType.BOOLEAN,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'digitalPins',
+                                defaultValue: Pins.D0
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'readAnalogPin',
+                        text: formatMessage({
+                            id: 'arduino.pins.readAnalogPin',
+                            default: 'read analog pin [PIN]',
+                            description: 'arduino read analog pin'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'analogPins',
+                                defaultValue: Pins.A0
+                            }
+                        }
+                    },
+                    '---',
+                    {
+                        opcode: 'setServoOutput',
+                        text: formatMessage({
+                            id: 'arduino.pins.setServoOutput',
+                            default: 'set servo pin [PIN] out [OUT]',
+                            description: 'arduino set servo pin out'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pwmPins',
+                                defaultValue: Pins.D3
+                            },
+                            OUT: {
+                                type: ArgumentType.ANGLE,
+                                defaultValue: '90'
+                            }
+                        }
+                    },
+                    '---',
+                    {
+                        opcode: 'attachInterrupt',
+                        text: formatMessage({
+                            id: 'arduino.pins.attachInterrupt',
+                            default: 'attach interrupt pin [PIN] mode [MODE] executes',
+                            description: 'arduino attach interrupt'
+                        }),
+                        blockType: BlockType.CONDITIONAL,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'interruptPins',
+                                defaultValue: Pins.D3
+                            },
+                            MODE: {
+                                type: ArgumentType.STRING,
+                                menu: 'interruptMode',
+                                defaultValue: InterrupMode.Rising
+                            }
+                        },
+                        programMode: [ProgramModeType.UPLOAD]
+                    },
+                    {
+                        opcode: 'detachInterrupt',
+                        text: formatMessage({
+                            id: 'arduino.pins.detachInterrupt',
+                            default: 'detach interrupt pin [PIN]',
+                            description: 'arduino attach interrupt'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'interruptPins',
+                                defaultValue: Pins.D3
+                            }
+                        },
+                        programMode: [ProgramModeType.UPLOAD]
+                    }
+                ],
+                menus: {
+                    pins: {
+                        items: this.PINS_MENU
+                    },
+                    mode: {
+                        items: this.MODE_MENU
+                    },
+                    digitalPins: {
+                        items: this.DIGITAL_PINS_MENU
+                    },
+                    analogPins: {
+                        items: this.ANALOG_PINS_MENU
+                    },
+                    level: {
+                        acceptReporters: true,
+                        items: this.LEVEL_MENU
+                    },
+                    pwmPins: {
+                        items: this.PWM_PINS_MENU
+                    },
+                    interruptPins: {
+                        items: this.INTERRUPT_PINS_MENU
+                    },
+                    interruptMode: {
+                        items: this.INTERRUP_MODE_MENU
+                    }
+                }
+            },
             {
                 id: 'serial',
                 name: formatMessage({

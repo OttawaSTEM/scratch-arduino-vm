@@ -142,14 +142,14 @@ const DataType = {
 /**
  * Manage communication with a Arduino esp32 peripheral over a Scratch Arduino Link client socket.
  */
-class ArduinoEsp32 extends EspPeripheral{
+class ArduinoEsp32 extends EspPeripheral {
     /**
      * Construct a Arduino communication object.
      * @param {Runtime} runtime - the Scratch Arduino runtime
      * @param {string} deviceId - the id of the extension
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, deviceId, originalDeviceId) {
+    constructor(runtime, deviceId, originalDeviceId) {
         super(runtime, deviceId, originalDeviceId, PNPID_LIST, SERIAL_CONFIG, DIVECE_OPT);
     }
 }
@@ -161,11 +161,11 @@ class ArduinoEsp32Device {
     /**
      * @return {string} - the ID of this extension.
      */
-    static get DEVICE_ID () {
+    static get DEVICE_ID() {
         return 'arduinoEsp32';
     }
 
-    get PINS_MENU () {
+    get PINS_MENU() {
         return [
             {
                 text: 'IO0',
@@ -298,7 +298,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get OUT_PINS_MENU () {
+    get OUT_PINS_MENU() {
         return [
             {
                 text: 'IO0',
@@ -415,7 +415,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get MODE_MENU () {
+    get MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -444,7 +444,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get ANALOG_PINS_MENU () {
+    get ANALOG_PINS_MENU() {
         return [
             {
                 text: 'IO0',
@@ -513,7 +513,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get LEVEL_MENU () {
+    get LEVEL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -534,7 +534,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get LEDC_CHANNELS_MENU () {
+    get LEDC_CHANNELS_MENU() {
         return [
             {
                 text: 'CH0 (LT0)',
@@ -603,7 +603,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get DAC_PINS_MENU () {
+    get DAC_PINS_MENU() {
         return [
             {
                 text: 'IO25',
@@ -616,7 +616,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get TOUCH_PINS_MENU () {
+    get TOUCH_PINS_MENU() {
         return [
             {
                 text: 'IO0',
@@ -661,7 +661,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get INTERRUP_MODE_MENU () {
+    get INTERRUP_MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -706,7 +706,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get SERIAL_NO_MENU () {
+    get SERIAL_NO_MENU() {
         return [
             {
                 text: '0',
@@ -723,7 +723,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get BAUDTATE_MENU () {
+    get BAUDTATE_MENU() {
         return [
             {
                 text: '4800',
@@ -756,7 +756,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get EOL_MENU () {
+    get EOL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -777,7 +777,7 @@ class ArduinoEsp32Device {
         ];
     }
 
-    get DATA_TYPE_MENU () {
+    get DATA_TYPE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -811,7 +811,7 @@ class ArduinoEsp32Device {
      * @param {Runtime} runtime - the Scratch Arduino runtime.
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, originalDeviceId) {
+    constructor(runtime, originalDeviceId) {
         /**
          * The Scratch Arduino runtime.
          * @type {Runtime}
@@ -819,14 +819,13 @@ class ArduinoEsp32Device {
         this.runtime = runtime;
 
         // Create a new Arduino esp32 peripheral instance
-        this._peripheral = new ArduinoEsp32(this.runtime,
-            ArduinoEsp32Device.DEVICE_ID, originalDeviceId);
+        this._peripheral = new ArduinoEsp32(this.runtime, ArduinoEsp32Device.DEVICE_ID, originalDeviceId);
     }
 
     /**
      * @returns {Array.<object>} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo() {
         return [
             {
                 id: 'pin',
@@ -1350,7 +1349,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin mode is done.
      */
-    setPinMode (args) {
+    setPinMode(args) {
         this._peripheral.setPinMode(args.PIN, args.MODE);
         return Promise.resolve();
     }
@@ -1360,7 +1359,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin digital out level is done.
      */
-    setDigitalOutput (args) {
+    setDigitalOutput(args) {
         this._peripheral.setDigitalOutput(args.PIN, args.LEVEL);
         return Promise.resolve();
     }
@@ -1370,7 +1369,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin pwm out value is done.
      */
-    setPwmOutput (args) {
+    setPwmOutput(args) {
         this._peripheral.setPwmOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }
@@ -1380,7 +1379,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {boolean} - true if read high level, false if read low level.
      */
-    readDigitalPin (args) {
+    readDigitalPin(args) {
         return this._peripheral.readDigitalPin(args.PIN);
     }
 
@@ -1389,7 +1388,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {number} - analog value fo the pin.
      */
-    readAnalogPin (args) {
+    readAnalogPin(args) {
         return this._peripheral.readAnalogPin(args.PIN);
     }
 
@@ -1398,7 +1397,7 @@ class ArduinoEsp32Device {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set servo out value is done.
      */
-    setServoOutput (args) {
+    setServoOutput(args) {
         this._peripheral.setServoOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }

@@ -177,7 +177,7 @@ const Colors = {
     White: 'White',
     WhiteSmoke: 'WhiteSmoke',
     Yellow: 'Yellow',
-    YellowGreen: 'YellowGreen'    
+    YellowGreen: 'YellowGreen'
 };
 
 const Pins = {
@@ -245,14 +245,14 @@ const DataType = {
 /**
  * Manage communication with a Arduino Nano peripheral over a Scratch Arduino Link client socket.
  */
-class ArduinoNano extends ArduinoPeripheral{
+class Arduino extends ArduinoPeripheral {
     /**
      * Construct a Arduino communication object.
      * @param {Runtime} runtime - the Scratch Arduino runtime
      * @param {string} deviceId - the id of the extension
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, deviceId, originalDeviceId) {
+    constructor(runtime, deviceId, originalDeviceId) {
         super(runtime, deviceId, originalDeviceId, PNPID_LIST, SERIAL_CONFIG, DIVECE_OPT);
     }
 }
@@ -264,19 +264,19 @@ class ArduinoFastLEDDevice {
     /**
      * @return {string} - the ID of this extension.
      */
-    static get DEVICE_ID () {
+    static get DEVICE_ID() {
         return 'FastLED';
     }
 
-    get COLORS_MENU () {
+    get COLORS_MENU() {
         return [
             {
                 text: '1. AliceBlue',
-                value: Colors.AliceBlue   
+                value: Colors.AliceBlue
             },
             {
                 text: '2. Amethyst',
-                value: Colors.Amethyst    
+                value: Colors.Amethyst
             },
             {
                 text: '3. AntiqueWhite',
@@ -284,11 +284,11 @@ class ArduinoFastLEDDevice {
             },
             {
                 text: '4. Aqua',
-                value: Colors.Aqua        
+                value: Colors.Aqua
             },
             {
                 text: '5. Aquamarine',
-                value: Colors.Aquamarine  
+                value: Colors.Aquamarine
             },
             {
                 text: '6. Azure',
@@ -837,11 +837,11 @@ class ArduinoFastLEDDevice {
             {
                 text: '142. YellowGreen',
                 value: Colors.YellowGreen
-            }      
+            }
         ];
     }
 
-    get PINS_MENU () {
+    get PINS_MENU() {
         return [
             {
                 text: '0',
@@ -926,7 +926,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get MODE_MENU () {
+    get MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -955,7 +955,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get DIGITAL_PINS_MENU () {
+    get DIGITAL_PINS_MENU() {
         return [
             {
                 text: '0',
@@ -1016,7 +1016,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get ANALOG_PINS_MENU () {
+    get ANALOG_PINS_MENU() {
         return [
             {
                 text: 'A0',
@@ -1045,7 +1045,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get LEVEL_MENU () {
+    get LEVEL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1066,7 +1066,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get PWM_PINS_MENU () {
+    get PWM_PINS_MENU() {
         return [
             {
                 text: '3',
@@ -1095,7 +1095,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get INTERRUPT_PINS_MENU () {
+    get INTERRUPT_PINS_MENU() {
         return [
             {
                 text: '2',
@@ -1108,7 +1108,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get INTERRUP_MODE_MENU () {
+    get INTERRUP_MODE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1145,7 +1145,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get BAUDTATE_MENU () {
+    get BAUDTATE_MENU() {
         return [
             {
                 text: '4800',
@@ -1178,7 +1178,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get EOL_MENU () {
+    get EOL_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1199,7 +1199,7 @@ class ArduinoFastLEDDevice {
         ];
     }
 
-    get DATA_TYPE_MENU () {
+    get DATA_TYPE_MENU() {
         return [
             {
                 text: formatMessage({
@@ -1233,7 +1233,7 @@ class ArduinoFastLEDDevice {
      * @param {Runtime} runtime - the Scratch Arduino runtime.
      * @param {string} originalDeviceId - the original id of the peripheral, like xxx_arduinoUno
      */
-    constructor (runtime, originalDeviceId) {
+    constructor(runtime, originalDeviceId) {
         /**
          * The Scratch Arduino runtime.
          * @type {Runtime}
@@ -1241,13 +1241,13 @@ class ArduinoFastLEDDevice {
         this.runtime = runtime;
 
         // Create a new Arduino nano peripheral instance
-        this._peripheral = new ArduinoNano(this.runtime, ArduinoFastLEDDevice.DEVICE_ID, originalDeviceId);
+        this._peripheral = new Arduino(this.runtime, ArduinoFastLEDDevice.DEVICE_ID, originalDeviceId);
     }
 
     /**
      * @returns {Array.<object>} metadata for this extension and its blocks.
      */
-    getInfo () {
+    getInfo() {
         return [
             {
                 id: 'fastled',
@@ -1322,7 +1322,7 @@ class ArduinoFastLEDDevice {
                                 type: ArgumentType.COLOR,
                             }
                         }
-                    },                    
+                    },
                     {
                         opcode: 'setAllLEDColorRGB',
                         text: formatMessage({
@@ -1420,7 +1420,7 @@ class ArduinoFastLEDDevice {
                                 type: ArgumentType.COLOR,
                             },
                         }
-                    },                    
+                    },
                     {
                         opcode: 'setLEDColorRGB',
                         text: formatMessage({
@@ -1473,7 +1473,7 @@ class ArduinoFastLEDDevice {
                             MILLISECOND: {
                                 type: ArgumentType.NUMBER,
                                 defaultValue: 1
-                            }                            
+                            }
                         }
                     },
                     {
@@ -1488,7 +1488,7 @@ class ArduinoFastLEDDevice {
                             SECOND: {
                                 type: ArgumentType.NUMBER,
                                 defaultValue: 1
-                            }                            
+                            }
                         }
                     },
                     {
@@ -1503,7 +1503,7 @@ class ArduinoFastLEDDevice {
                             MINTUE: {
                                 type: ArgumentType.NUMBER,
                                 defaultValue: 1
-                            }                            
+                            }
                         }
                     },
                     {
@@ -1518,7 +1518,7 @@ class ArduinoFastLEDDevice {
                             HOUR: {
                                 type: ArgumentType.NUMBER,
                                 defaultValue: 1
-                            }                            
+                            }
                         }
                     },
                 ],
@@ -1770,7 +1770,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin mode is done.
      */
-    setPinMode (args) {
+    setPinMode(args) {
         this._peripheral.setPinMode(args.PIN, args.MODE);
         return Promise.resolve();
     }
@@ -1780,7 +1780,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin digital out level is done.
      */
-    setDigitalOutput (args) {
+    setDigitalOutput(args) {
         this._peripheral.setDigitalOutput(args.PIN, args.LEVEL);
         return Promise.resolve();
     }
@@ -1790,7 +1790,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set pin pwm out value is done.
      */
-    setPwmOutput (args) {
+    setPwmOutput(args) {
         this._peripheral.setPwmOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }
@@ -1800,7 +1800,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {boolean} - true if read high level, false if read low level.
      */
-    readDigitalPin (args) {
+    readDigitalPin(args) {
         return this._peripheral.readDigitalPin(args.PIN);
     }
 
@@ -1809,7 +1809,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {number} - analog value fo the pin.
      */
-    readAnalogPin (args) {
+    readAnalogPin(args) {
         return this._peripheral.readAnalogPin(args.PIN);
     }
 
@@ -1818,7 +1818,7 @@ class ArduinoFastLEDDevice {
      * @param {object} args - the block's arguments.
      * @return {Promise} - a Promise that resolves after the set servo out value is done.
      */
-    setServoOutput (args) {
+    setServoOutput(args) {
         this._peripheral.setServoOutput(args.PIN, args.OUT);
         return Promise.resolve();
     }
