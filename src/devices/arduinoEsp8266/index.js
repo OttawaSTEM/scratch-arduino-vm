@@ -4,7 +4,7 @@ const ArgumentType = require('../../extension-support/argument-type');
 const BlockType = require('../../extension-support/block-type');
 const ProgramModeType = require('../../extension-support/program-mode-type');
 
-const ArduinoPeripheral = require('../arduinoCommon/arduino-peripheral');
+const EspPeripheral = require('../arduinoCommon/esp-peripheral');
 
 /**
  * The list of USB device filters.
@@ -12,7 +12,11 @@ const ArduinoPeripheral = require('../arduinoCommon/arduino-peripheral');
  */
 const PNPID_LIST = [
     // CH340
-    'USB\\VID_1A86&PID_7523'
+    'USB\\VID_1A86&PID_7523',
+    // CH9102
+    'USB\\VID_1A86&PID_55D4',
+    // CP2102
+    'USB\\VID_10C4&PID_EA60'
 ];
 
 /**
@@ -22,45 +26,82 @@ const PNPID_LIST = [
 const SERIAL_CONFIG = {
     baudRate: 57600,
     dataBits: 8,
-    stopBits: 1
+    stopBits: 1,
+    rtscts: true
 };
 
 /**
- * Configuration for arduino-cli firmata firmware.
+ * Configuration for arduino-cli.
  * @readonly
  */
 const DIVECE_OPT = {
     type: 'arduino',
-    fqbn: 'arduino:avr:nano:cpu=atmega328',
-    firmware: 'arduinoNano.standardFirmata.ino.hex'
+    fqbn: 'esp8266:esp8266:esp8266'
 };
 
 const Pins = {
-    D0: '0',
-    D1: '1',
-    D2: '2',
-    D3: '3',
-    D4: '4',
-    D5: '5',
-    D6: '6',
-    D7: '7',
-    D8: '8',
-    D9: '9',
-    D10: '10',
-    D11: '11',
-    D12: '12',
-    D13: '13',
-    A0: 'A0',
-    A1: 'A1',
-    A2: 'A2',
-    A3: 'A3',
-    A4: 'A4',
-    A5: 'A5'
+    IO0: '0',
+    IO1: '1',
+    IO2: '2',
+    IO3: '3',
+    IO4: '4',
+    IO5: '5',
+    IO6: '6',
+    IO7: '7',
+    IO8: '8',
+    IO9: '9',
+    IO10: '10',
+    IO11: '11',
+    IO12: '12',
+    IO13: '13',
+    IO14: '14',
+    IO15: '15',
+    IO16: '16',
+    IO17: '17',
+    IO18: '18',
+    IO19: '19',
+    IO21: '21',
+    IO22: '22',
+    IO23: '23',
+    IO25: '25',
+    IO26: '26',
+    IO27: '27',
+    IO32: '32',
+    IO33: '33',
+    IO34: '34',
+    IO35: '35',
+    IO36: '36',
+    IO39: '39'
 };
 
 const Level = {
     High: 'HIGH',
     Low: 'LOW'
+};
+
+const Channels = {
+    CH0: '0',
+    CH1: '1',
+    CH2: '2',
+    CH3: '3',
+    CH4: '4',
+    CH5: '5',
+    CH6: '6',
+    CH7: '7',
+    CH8: '8',
+    CH9: '9',
+    CH10: '10',
+    CH11: '11',
+    CH12: '12',
+    CH13: '13',
+    CH14: '14',
+    CH15: '15'
+};
+
+const SerialNo = {
+    Serial0: '0',
+    Serial1: '1',
+    Serial2: '2'
 };
 
 const Buadrate = {
@@ -88,7 +129,8 @@ const InterrupMode = {
     Rising: 'RISING',
     Falling: 'FALLING',
     Change: 'CHANGE',
-    Low: 'LOW'
+    Low: 'LOW',
+    High: 'High'
 };
 
 const DataType = {
@@ -98,9 +140,9 @@ const DataType = {
 };
 
 /**
- * Manage communication with a Arduino Nano peripheral over a Scratch Arduino Link client socket.
+ * Manage communication with a Arduino esp8266 peripheral over a Scratch Arduino Link client socket.
  */
-class Arduino extends ArduinoPeripheral {
+class ArduinoEsp8266 extends EspPeripheral {
     /**
      * Construct a Arduino communication object.
      * @param {Runtime} runtime - the Scratch Arduino runtime
@@ -113,97 +155,262 @@ class Arduino extends ArduinoPeripheral {
 }
 
 /**
- * Scratch Arduino blocks to interact with a Arduino Nano peripheral.
+ * Scratch Arduino blocks to interact with a Arduino esp8266 peripheral.
  */
-class ArduinoNanoDevice {
+class ArduinoEsp8266Device {
     /**
      * @return {string} - the ID of this extension.
      */
     static get DEVICE_ID() {
-        return 'arduinoNano';
+        return 'arduinoEsp8266';
     }
 
     get PINS_MENU() {
         return [
             {
-                text: '0',
-                value: Pins.D0
+                text: 'IO0',
+                value: Pins.IO0
             },
             {
-                text: '1',
-                value: Pins.D1
+                text: 'IO1',
+                value: Pins.IO1
             },
             {
-                text: '2',
-                value: Pins.D2
+                text: 'IO2',
+                value: Pins.IO2
             },
             {
-                text: '3',
-                value: Pins.D3
+                text: 'IO3',
+                value: Pins.IO3
             },
             {
-                text: '4',
-                value: Pins.D4
+                text: 'IO4',
+                value: Pins.IO4
             },
             {
-                text: '5',
-                value: Pins.D5
+                text: 'IO5',
+                value: Pins.IO5
             },
             {
-                text: '6',
-                value: Pins.D6
+                text: 'IO6',
+                value: Pins.IO6
             },
             {
-                text: '7',
-                value: Pins.D7
+                text: 'IO7',
+                value: Pins.IO7
             },
             {
-                text: '8',
-                value: Pins.D8
+                text: 'IO8',
+                value: Pins.IO8
             },
             {
-                text: '9',
-                value: Pins.D9
+                text: 'IO9',
+                value: Pins.IO9
             },
             {
-                text: '10',
-                value: Pins.D10
+                text: 'IO10',
+                value: Pins.IO10
             },
             {
-                text: '11',
-                value: Pins.D11
+                text: 'IO11',
+                value: Pins.IO11
             },
             {
-                text: '12',
-                value: Pins.D12
+                text: 'IO12',
+                value: Pins.IO12
             },
             {
-                text: '13',
-                value: Pins.D13
+                text: 'IO13',
+                value: Pins.IO13
             },
             {
-                text: 'A0',
-                value: Pins.A0
+                text: 'IO14',
+                value: Pins.IO14
             },
             {
-                text: 'A1',
-                value: Pins.A1
+                text: 'IO15',
+                value: Pins.IO15
             },
             {
-                text: 'A2',
-                value: Pins.A2
+                text: 'IO16',
+                value: Pins.IO16
             },
             {
-                text: 'A3',
-                value: Pins.A3
+                text: 'IO17',
+                value: Pins.IO17
             },
             {
-                text: 'A4',
-                value: Pins.A4
+                text: 'IO18',
+                value: Pins.IO18
             },
             {
-                text: 'A5',
-                value: Pins.A5
+                text: 'IO19',
+                value: Pins.IO19
+            },
+            {
+                text: 'IO21',
+                value: Pins.IO21
+            },
+            {
+                text: 'IO22',
+                value: Pins.IO22
+            },
+            {
+                text: 'IO23',
+                value: Pins.IO23
+            },
+            {
+                text: 'IO25',
+                value: Pins.IO25
+            },
+            {
+                text: 'IO26',
+                value: Pins.IO26
+            },
+            {
+                text: 'IO27',
+                value: Pins.IO27
+            },
+            {
+                text: 'IO32',
+                value: Pins.IO32
+            },
+            {
+                text: 'IO33',
+                value: Pins.IO33
+            },
+            {
+                text: 'IO34',
+                value: Pins.IO34
+            },
+            {
+                text: 'IO35',
+                value: Pins.IO35
+            },
+            {
+                text: 'IO36',
+                value: Pins.IO36
+            },
+            {
+                text: 'IO39',
+                value: Pins.IO39
+            }
+        ];
+    }
+
+    get OUT_PINS_MENU() {
+        return [
+            {
+                text: 'IO0',
+                value: Pins.IO0
+            },
+            {
+                text: 'IO1',
+                value: Pins.IO1
+            },
+            {
+                text: 'IO2',
+                value: Pins.IO2
+            },
+            {
+                text: 'IO3',
+                value: Pins.IO3
+            },
+            {
+                text: 'IO4',
+                value: Pins.IO4
+            },
+            {
+                text: 'IO5',
+                value: Pins.IO5
+            },
+            {
+                text: 'IO6',
+                value: Pins.IO6
+            },
+            {
+                text: 'IO7',
+                value: Pins.IO7
+            },
+            {
+                text: 'IO8',
+                value: Pins.IO8
+            },
+            {
+                text: 'IO9',
+                value: Pins.IO9
+            },
+            {
+                text: 'IO10',
+                value: Pins.IO10
+            },
+            {
+                text: 'IO11',
+                value: Pins.IO11
+            },
+            {
+                text: 'IO12',
+                value: Pins.IO12
+            },
+            {
+                text: 'IO13',
+                value: Pins.IO13
+            },
+            {
+                text: 'IO14',
+                value: Pins.IO14
+            },
+            {
+                text: 'IO15',
+                value: Pins.IO15
+            },
+            {
+                text: 'IO16',
+                value: Pins.IO16
+            },
+            {
+                text: 'IO17',
+                value: Pins.IO17
+            },
+            {
+                text: 'IO18',
+                value: Pins.IO18
+            },
+            {
+                text: 'IO19',
+                value: Pins.IO19
+            },
+            {
+                text: 'IO21',
+                value: Pins.IO21
+            },
+            {
+                text: 'IO22',
+                value: Pins.IO22
+            },
+            {
+                text: 'IO23',
+                value: Pins.IO23
+            },
+            {
+                text: 'IO25',
+                value: Pins.IO25
+            },
+            {
+                text: 'IO26',
+                value: Pins.IO26
+            },
+            {
+                text: 'IO27',
+                value: Pins.IO27
+            },
+            {
+                text: 'IO32',
+                value: Pins.IO32
+            },
+            {
+                text: 'IO33',
+                value: Pins.IO33
             }
         ];
     }
@@ -212,7 +419,7 @@ class ArduinoNanoDevice {
         return [
             {
                 text: formatMessage({
-                    id: 'arduino.modeMenu.input',
+                    id: 'arduinoEsp8266.modeMenu.input',
                     default: 'input',
                     description: 'label for input pin mode'
                 }),
@@ -220,7 +427,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.modeMenu.output',
+                    id: 'arduinoEsp8266.modeMenu.output',
                     default: 'output',
                     description: 'label for output pin mode'
                 }),
@@ -228,7 +435,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.modeMenu.inputPullup',
+                    id: 'arduinoEsp8266.modeMenu.inputPullup',
                     default: 'input-pullup',
                     description: 'label for input-pullup pin mode'
                 }),
@@ -237,92 +444,71 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get DIGITAL_PINS_MENU() {
-        return [
-            {
-                text: '0',
-                value: Pins.D0
-            },
-            {
-                text: '1',
-                value: Pins.D1
-            },
-            {
-                text: '2',
-                value: Pins.D2
-            },
-            {
-                text: '3',
-                value: Pins.D3
-            },
-            {
-                text: '4',
-                value: Pins.D4
-            },
-            {
-                text: '5',
-                value: Pins.D5
-            },
-            {
-                text: '6',
-                value: Pins.D6
-            },
-            {
-                text: '7',
-                value: Pins.D7
-            },
-            {
-                text: '8',
-                value: Pins.D8
-            },
-            {
-                text: '9',
-                value: Pins.D9
-            },
-            {
-                text: '10',
-                value: Pins.D10
-            },
-            {
-                text: '11',
-                value: Pins.D11
-            },
-            {
-                text: '12',
-                value: Pins.D12
-            },
-            {
-                text: '13',
-                value: Pins.D13
-            }
-        ];
-    }
-
     get ANALOG_PINS_MENU() {
         return [
             {
-                text: 'A0',
-                value: Pins.A0
+                text: 'IO0',
+                value: Pins.IO0
             },
             {
-                text: 'A1',
-                value: Pins.A1
+                text: 'IO2',
+                value: Pins.IO2
             },
             {
-                text: 'A2',
-                value: Pins.A2
+                text: 'IO4',
+                value: Pins.IO4
             },
             {
-                text: 'A3',
-                value: Pins.A3
+                text: 'IO12',
+                value: Pins.IO12
             },
             {
-                text: 'A4',
-                value: Pins.A4
+                text: 'IO13',
+                value: Pins.IO13
             },
             {
-                text: 'A5',
-                value: Pins.A5
+                text: 'IO14',
+                value: Pins.IO14
+            },
+            {
+                text: 'IO15',
+                value: Pins.IO15
+            },
+            {
+                text: 'IO25',
+                value: Pins.IO25
+            },
+            {
+                text: 'IO26',
+                value: Pins.IO26
+            },
+            {
+                text: 'IO27',
+                value: Pins.IO27
+            },
+            {
+                text: 'IO32',
+                value: Pins.IO32
+            },
+            {
+                text: 'IO33',
+                value: Pins.IO33
+            },
+            {
+                text: 'IO34',
+                value: Pins.IO34
+            },
+            {
+                text: 'IO35',
+                value: Pins.IO35
+            },
+            {
+                text: 'IO36',
+                value: Pins.IO36
+            },
+            {
+                text: 'IO39',
+                value: Pins.IO39
             }
         ];
     }
@@ -331,7 +517,7 @@ class ArduinoNanoDevice {
         return [
             {
                 text: formatMessage({
-                    id: 'arduino.levelMenu.high',
+                    id: 'arduinoEsp8266.levelMenu.high',
                     default: 'high',
                     description: 'label for high level'
                 }),
@@ -339,7 +525,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.levelMenu.low',
+                    id: 'arduinoEsp8266.levelMenu.low',
                     default: 'low',
                     description: 'label for low level'
                 }),
@@ -348,44 +534,129 @@ class ArduinoNanoDevice {
         ];
     }
 
-    get PWM_PINS_MENU() {
+    get LEDC_CHANNELS_MENU() {
         return [
             {
-                text: '3',
-                value: Pins.D3
+                text: 'CH0 (LT0)',
+                value: Channels.CH0
             },
             {
-                text: '5',
-                value: Pins.D5
+                text: 'CH1 (LT0)',
+                value: Channels.CH1
             },
             {
-                text: '6',
-                value: Pins.D6
+                text: 'CH2 (LT1)',
+                value: Channels.CH2
             },
             {
-                text: '9',
-                value: Pins.D9
+                text: 'CH3 (LT1)',
+                value: Channels.CH3
             },
             {
-                text: '10',
-                value: Pins.D10
+                text: 'CH4 (LT2)',
+                value: Channels.CH4
             },
             {
-                text: '11',
-                value: Pins.D11
+                text: 'CH5 (LT2)',
+                value: Channels.CH5
+            },
+            {
+                text: 'CH6 (LT3)',
+                value: Channels.CH6
+            },
+            {
+                text: 'CH7 (LT3)',
+                value: Channels.CH7
+            },
+            {
+                text: 'CH8 (HT0)',
+                value: Channels.CH8
+            },
+            {
+                text: 'CH9 (HT0)',
+                value: Channels.CH9
+            },
+            {
+                text: 'CH10 (HT1)',
+                value: Channels.CH10
+            },
+            {
+                text: 'CH11 (HT1)',
+                value: Channels.CH11
+            },
+            {
+                text: 'CH12 (HT2)',
+                value: Channels.CH12
+            },
+            {
+                text: 'CH13 (HT2)',
+                value: Channels.CH13
+            },
+            {
+                text: 'CH14 (HT3)',
+                value: Channels.CH14
+            },
+            {
+                text: 'CH15 (HT3)',
+                value: Channels.CH15
             }
         ];
     }
 
-    get INTERRUPT_PINS_MENU() {
+    get DAC_PINS_MENU() {
         return [
             {
-                text: '2',
-                value: Pins.D2
+                text: 'IO25',
+                value: Pins.IO25
             },
             {
-                text: '3',
-                value: Pins.D3
+                text: 'IO26',
+                value: Pins.IO26
+            }
+        ];
+    }
+
+    get TOUCH_PINS_MENU() {
+        return [
+            {
+                text: 'IO0',
+                value: Pins.IO0
+            },
+            {
+                text: 'IO2',
+                value: Pins.IO2
+            },
+            {
+                text: 'IO4',
+                value: Pins.IO4
+            },
+            {
+                text: 'IO12',
+                value: Pins.IO12
+            },
+            {
+                text: 'IO13',
+                value: Pins.IO13
+            },
+            {
+                text: 'IO14',
+                value: Pins.IO14
+            },
+            {
+                text: 'IO15',
+                value: Pins.IO15
+            },
+            {
+                text: 'IO27',
+                value: Pins.IO27
+            },
+            {
+                text: 'IO32',
+                value: Pins.IO32
+            },
+            {
+                text: 'IO33',
+                value: Pins.IO33
             }
         ];
     }
@@ -394,7 +665,7 @@ class ArduinoNanoDevice {
         return [
             {
                 text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.risingEdge',
+                    id: 'arduinoEsp8266.InterrupModeMenu.risingEdge',
                     default: 'rising edge',
                     description: 'label for rising edge interrup'
                 }),
@@ -402,7 +673,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.fallingEdge',
+                    id: 'arduinoEsp8266.InterrupModeMenu.fallingEdge',
                     default: 'falling edge',
                     description: 'label for falling edge interrup'
                 }),
@@ -410,7 +681,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.changeEdge',
+                    id: 'arduinoEsp8266.InterrupModeMenu.changeEdge',
                     default: 'change edge',
                     description: 'label for change edge interrup'
                 }),
@@ -418,11 +689,36 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.low',
+                    id: 'arduinoEsp8266.InterrupModeMenu.low',
                     default: 'low',
                     description: 'label for low interrup'
                 }),
                 value: InterrupMode.Low
+            },
+            {
+                text: formatMessage({
+                    id: 'arduinoEsp8266.InterrupModeMenu.high',
+                    default: 'high',
+                    description: 'label for high interrup'
+                }),
+                value: InterrupMode.High
+            }
+        ];
+    }
+
+    get SERIAL_NO_MENU() {
+        return [
+            {
+                text: '0',
+                value: SerialNo.Serial0
+            },
+            {
+                text: '1',
+                value: SerialNo.Serial1
+            },
+            {
+                text: '2',
+                value: SerialNo.Serial2
             }
         ];
     }
@@ -464,7 +760,7 @@ class ArduinoNanoDevice {
         return [
             {
                 text: formatMessage({
-                    id: 'arduino.eolMenu.warp',
+                    id: 'arduinoEsp8266.eolMenu.warp',
                     default: 'warp',
                     description: 'label for warp print'
                 }),
@@ -472,7 +768,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.eolMenu.noWarp',
+                    id: 'arduinoEsp8266.eolMenu.noWarp',
                     default: 'no-warp',
                     description: 'label for no warp print'
                 }),
@@ -485,7 +781,7 @@ class ArduinoNanoDevice {
         return [
             {
                 text: formatMessage({
-                    id: 'arduino.dataTypeMenu.integer',
+                    id: 'arduinoEsp8266.dataTypeMenu.integer',
                     default: 'integer',
                     description: 'label for integer'
                 }),
@@ -493,7 +789,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.dataTypeMenu.decimal',
+                    id: 'arduinoEsp8266.dataTypeMenu.decimal',
                     default: 'decimal',
                     description: 'label for decimal number'
                 }),
@@ -501,7 +797,7 @@ class ArduinoNanoDevice {
             },
             {
                 text: formatMessage({
-                    id: 'arduino.dataTypeMenu.string',
+                    id: 'arduinoEsp8266.dataTypeMenu.string',
                     default: 'string',
                     description: 'label for string'
                 }),
@@ -522,8 +818,9 @@ class ArduinoNanoDevice {
          */
         this.runtime = runtime;
 
-        // Create a new Arduino nano peripheral instance
-        this._peripheral = new Arduino(this.runtime, ArduinoNanoDevice.DEVICE_ID, originalDeviceId);
+        // Create a new Arduino esp8266 peripheral instance
+        this._peripheral = new ArduinoEsp8266(this.runtime,
+            ArduinoEsp8266Device.DEVICE_ID, originalDeviceId);
     }
 
     /**
@@ -534,9 +831,9 @@ class ArduinoNanoDevice {
             {
                 id: 'pin',
                 name: formatMessage({
-                    id: 'arduino.category.pins',
+                    id: 'esp8266Arduino.category.pins',
                     default: 'Pins',
-                    description: 'The name of the arduino device pin category'
+                    description: 'The name of the esp8266 arduino device pin category'
                 }),
                 color1: '#009297',
                 color2: '#004B4C',
@@ -545,16 +842,16 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'setPinMode',
                         text: formatMessage({
-                            id: 'arduino.pins.setPinMode',
+                            id: 'esp8266Arduino.pins.setPinMode',
                             default: 'set pin [PIN] mode [MODE]',
-                            description: 'arduino set pin mode'
+                            description: 'esp8266Arduino set pin mode'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'pins',
-                                defaultValue: Pins.D0
+                                menu: 'outPins',
+                                defaultValue: Pins.IO2
                             },
                             MODE: {
                                 type: ArgumentType.STRING,
@@ -566,16 +863,16 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'setDigitalOutput',
                         text: formatMessage({
-                            id: 'arduino.pins.setDigitalOutput',
+                            id: 'esp8266Arduino.pins.setDigitalOutput',
                             default: 'set digital pin [PIN] out [LEVEL]',
-                            description: 'arduino set digital pin out'
+                            description: 'esp8266Arduino set digital pin out'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'pins',
-                                defaultValue: Pins.D0
+                                menu: 'outPins',
+                                defaultValue: Pins.IO2
                             },
                             LEVEL: {
                                 type: ArgumentType.STRING,
@@ -585,22 +882,47 @@ class ArduinoNanoDevice {
                         }
                     },
                     {
-                        opcode: 'setPwmOutput',
+                        opcode: 'esp8266SetPwmOutput',
                         text: formatMessage({
-                            id: 'arduino.pins.setPwmOutput',
-                            default: 'set pwm pin [PIN] out [OUT]',
-                            description: 'arduino set pwm pin out'
+                            id: 'esp8266Arduino.pins.esp8266SetPwmOutput',
+                            default: 'set pwm pin [PIN] use channel [CH] out [OUT]',
+                            description: 'esp8266Arduino set pwm pin out'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'pwmPins',
-                                defaultValue: Pins.D3
+                                menu: 'outPins',
+                                defaultValue: Pins.IO2
                             },
                             OUT: {
-                                type: ArgumentType.UINT8_NUMBER,
-                                defaultValue: '255'
+                                type: ArgumentType.NUMBER,
+                                defaultValue: '0'
+                            },
+                            CH: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'ledcChannels',
+                                defaultValue: Channels.CH0
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'esp8266SetDACOutput',
+                        text: formatMessage({
+                            id: 'esp8266Arduino.pins.esp8266SetDACOutput',
+                            default: 'set dac pin [PIN] out [OUT]',
+                            description: 'esp8266Arduino set dac pin out'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'dacPins',
+                                defaultValue: Pins.IO25
+                            },
+                            OUT: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: '0'
                             }
                         }
                     },
@@ -608,76 +930,74 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'readDigitalPin',
                         text: formatMessage({
-                            id: 'arduino.pins.readDigitalPin',
+                            id: 'arduinoEsp8266.pins.readDigitalPin',
                             default: 'read digital pin [PIN]',
-                            description: 'arduino read digital pin'
+                            description: 'arduinoEsp8266 read digital pin'
                         }),
                         blockType: BlockType.BOOLEAN,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'digitalPins',
-                                defaultValue: Pins.D0
+                                menu: 'pins',
+                                defaultValue: Pins.IO2
                             }
                         }
                     },
                     {
                         opcode: 'readAnalogPin',
                         text: formatMessage({
-                            id: 'arduino.pins.readAnalogPin',
+                            id: 'arduinoEsp8266.pins.readAnalogPin',
                             default: 'read analog pin [PIN]',
-                            description: 'arduino read analog pin'
+                            description: 'arduinoEsp8266 read analog pin'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
                                 menu: 'analogPins',
-                                defaultValue: Pins.A0
+                                defaultValue: Pins.IO2
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'esp8266ReadTouchPin',
+                        text: formatMessage({
+                            id: 'arduinoEsp8266.pins.esp8266ReadTouchPin',
+                            default: 'read touch pin [PIN]',
+                            description: 'arduinoEsp8266 read touch pin'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'touchPins',
+                                defaultValue: Pins.IO2
                             }
                         }
                     },
                     '---',
                     {
-                        opcode: 'getDistance',
+                        opcode: 'esp8266SetServoOutput',
                         text: formatMessage({
-                            id: 'arduino.pins.getDistance',
-                            default: 'Get distance',
-                            description: 'arduino get distance from ultrasonic'
-                        }),
-                        blockType: BlockType.COMMAND,
-                        arguments: {
-                        }
-                    },
-                    {
-                        opcode: 'readDistance',
-                        text: formatMessage({
-                            id: 'arduino.pins.readDistance',
-                            default: 'distance CM',
-                            description: 'arduino read distance from ultrasonic'
-                        }),
-                        blockType: BlockType.REPORTER,
-                        arguments: {
-                        }
-                    },
-                    '---',
-                    {
-                        opcode: 'setServoOutput',
-                        text: formatMessage({
-                            id: 'arduino.pins.setServoOutput',
-                            default: 'set servo pin [PIN] out [OUT]',
-                            description: 'arduino set servo pin out'
+                            id: 'arduinoEsp8266.pins.setServoOutput',
+                            default: 'set servo pin [PIN] use channel [CH] out [OUT]',
+                            description: 'arduinoEsp8266 set servo pin out'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'pwmPins',
-                                defaultValue: Pins.D3
+                                menu: 'outPins',
+                                defaultValue: Pins.IO2
                             },
                             OUT: {
                                 type: ArgumentType.ANGLE,
-                                defaultValue: '90'
+                                defaultValue: '0'
+                            },
+                            CH: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'ledcChannels',
+                                defaultValue: Channels.CH0
                             }
                         }
                     },
@@ -685,16 +1005,16 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'attachInterrupt',
                         text: formatMessage({
-                            id: 'arduino.pins.attachInterrupt',
+                            id: 'arduinoEsp8266.pins.attachInterrupt',
                             default: 'attach interrupt pin [PIN] mode [MODE] executes',
-                            description: 'arduino attach interrupt'
+                            description: 'arduinoEsp8266 attach interrupt'
                         }),
                         blockType: BlockType.CONDITIONAL,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'interruptPins',
-                                defaultValue: Pins.D3
+                                menu: 'pins',
+                                defaultValue: Pins.IO2
                             },
                             MODE: {
                                 type: ArgumentType.STRING,
@@ -705,18 +1025,19 @@ class ArduinoNanoDevice {
                         programMode: [ProgramModeType.UPLOAD]
                     },
                     {
+
                         opcode: 'detachInterrupt',
                         text: formatMessage({
-                            id: 'arduino.pins.detachInterrupt',
+                            id: 'arduinoEsp8266.pins.detachInterrupt',
                             default: 'detach interrupt pin [PIN]',
-                            description: 'arduino attach interrupt'
+                            description: 'arduinoEsp8266 detach interrupt'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
                             PIN: {
                                 type: ArgumentType.STRING,
-                                menu: 'interruptPins',
-                                defaultValue: Pins.D3
+                                menu: 'pins',
+                                defaultValue: Pins.IO2
                             }
                         },
                         programMode: [ProgramModeType.UPLOAD]
@@ -726,11 +1047,11 @@ class ArduinoNanoDevice {
                     pins: {
                         items: this.PINS_MENU
                     },
+                    outPins: {
+                        items: this.OUT_PINS_MENU
+                    },
                     mode: {
                         items: this.MODE_MENU
-                    },
-                    digitalPins: {
-                        items: this.DIGITAL_PINS_MENU
                     },
                     analogPins: {
                         items: this.ANALOG_PINS_MENU
@@ -739,11 +1060,14 @@ class ArduinoNanoDevice {
                         acceptReporters: true,
                         items: this.LEVEL_MENU
                     },
-                    pwmPins: {
-                        items: this.PWM_PINS_MENU
+                    ledcChannels: {
+                        items: this.LEDC_CHANNELS_MENU
                     },
-                    interruptPins: {
-                        items: this.INTERRUPT_PINS_MENU
+                    dacPins: {
+                        items: this.DAC_PINS_MENU
+                    },
+                    touchPins: {
+                        items: this.TOUCH_PINS_MENU
                     },
                     interruptMode: {
                         items: this.INTERRUP_MODE_MENU
@@ -753,40 +1077,50 @@ class ArduinoNanoDevice {
             {
                 id: 'serial',
                 name: formatMessage({
-                    id: 'arduino.category.serial',
+                    id: 'arduinoEsp8266.category.serial',
                     default: 'Serial',
-                    description: 'The name of the arduino device serial category'
+                    description: 'The name of the arduino esp8266 device serial category'
                 }),
                 color1: '#9966FF',
                 color2: '#774DCB',
                 color3: '#774DCB',
                 blocks: [
                     {
-                        opcode: 'serialBegin',
+                        opcode: 'multiSerialBegin',
                         text: formatMessage({
-                            id: 'arduino.serial.serialBegin',
-                            default: 'serial begin baudrate [VALUE]',
-                            description: 'arduino serial begin'
+                            id: 'arduinoEsp8266.serial.multiSerialBegin',
+                            default: 'serial [NO] begin baudrate [VALUE]',
+                            description: 'arduinoEsp8266 multi serial begin'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
+                            NO: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'serialNo',
+                                defaultValue: SerialNo.Serial0
+                            },
                             VALUE: {
                                 type: ArgumentType.STRING,
                                 menu: 'baudrate',
-                                defaultValue: Buadrate.B9600
+                                defaultValue: Buadrate.B115200
                             }
                         },
                         programMode: [ProgramModeType.UPLOAD]
                     },
                     {
-                        opcode: 'serialPrint',
+                        opcode: 'multiSerialPrint',
                         text: formatMessage({
-                            id: 'arduino.serial.serialPrint',
-                            default: 'serial print [VALUE] [EOL]',
-                            description: 'arduino serial print'
+                            id: 'arduinoEsp8266.serial.multiSerialPrint',
+                            default: 'serial [NO] print [VALUE] [EOL]',
+                            description: 'arduinoEsp8266 multi serial print'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
+                            NO: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'serialNo',
+                                defaultValue: SerialNo.Serial0
+                            },
                             VALUE: {
                                 type: ArgumentType.STRING,
                                 defaultValue: 'Hello Scratch Arduino'
@@ -800,25 +1134,37 @@ class ArduinoNanoDevice {
                         programMode: [ProgramModeType.UPLOAD]
                     },
                     {
-                        opcode: 'serialAvailable',
+                        opcode: 'multiSerialAvailable',
                         text: formatMessage({
-                            id: 'arduino.serial.serialAvailable',
-                            default: 'serial available data length',
-                            description: 'arduino serial available data length'
+                            id: 'arduinoEsp8266.serial.multiSerialAvailable',
+                            default: 'serial [NO] available data length',
+                            description: 'arduinoEsp8266 multi serial available data length'
                         }),
+                        arguments: {
+                            NO: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'serialNo',
+                                defaultValue: SerialNo.Serial0
+                            }
+                        },
                         blockType: BlockType.REPORTER,
-                        disableMonitor: true,
                         programMode: [ProgramModeType.UPLOAD]
                     },
                     {
-                        opcode: 'serialReadData',
+                        opcode: 'multiSerialReadAByte',
                         text: formatMessage({
-                            id: 'arduino.serial.serialReadData',
-                            default: 'serial read data',
-                            description: 'arduino serial read data'
+                            id: 'arduinoEsp8266.serial.multiSerialReadAByte',
+                            default: 'serial [NO] read a byte',
+                            description: 'arduinoEsp8266 multi serial read a byte'
                         }),
+                        arguments: {
+                            NO: {
+                                type: ArgumentType.NUMBER,
+                                menu: 'serialNo',
+                                defaultValue: SerialNo.Serial0
+                            }
+                        },
                         blockType: BlockType.REPORTER,
-                        disableMonitor: true,
                         programMode: [ProgramModeType.UPLOAD]
                     }
                 ],
@@ -826,17 +1172,54 @@ class ArduinoNanoDevice {
                     baudrate: {
                         items: this.BAUDTATE_MENU
                     },
+                    serialNo: {
+                        items: this.SERIAL_NO_MENU
+                    },
                     eol: {
                         items: this.EOL_MENU
                     }
                 }
             },
             {
+                id: 'sensor',
+                name: formatMessage({
+                    id: 'arduinoEsp8266.category.sensor',
+                    default: 'Sensor',
+                    description: 'The name of the arduino esp8266 device sensor category'
+                }),
+                color1: '#4CBFE6',
+                color2: '#2E8EB8',
+                color3: '#2E8EB8',
+                blocks: [
+                    {
+                        opcode: 'esp8266ReadHallSensor',
+                        text: formatMessage({
+                            id: 'arduinoEsp8266.sensor.readHallSensor',
+                            default: 'read hall sensor',
+                            description: 'arduino esp8266 read hall sensor'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        disableMonitor: true
+                    },
+                    '---',
+                    {
+                        opcode: 'runningTime',
+                        text: formatMessage({
+                            id: 'arduinoEsp8266.sensor.runningTime',
+                            default: 'running time (millis)',
+                            description: 'arduino esp8266 running time'
+                        }),
+                        blockType: BlockType.REPORTER,
+                        disableMonitor: true
+                    }
+                ]
+            },
+            {
                 id: 'data',
                 name: formatMessage({
-                    id: 'arduino.category.data',
+                    id: 'arduinoEsp8266.category.data',
                     default: 'Data',
-                    description: 'The name of the arduino device data category'
+                    description: 'The name of the arduino esp8266 device data category'
                 }),
                 color1: '#CF63CF',
                 color2: '#C94FC9',
@@ -845,9 +1228,9 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'dataMap',
                         text: formatMessage({
-                            id: 'arduino.data.dataMap',
+                            id: 'arduinoEsp8266.data.dataMap',
                             default: 'map [DATA] from ([ARG0], [ARG1]) to ([ARG2], [ARG3])',
-                            description: 'arduino data map'
+                            description: 'arduinoEsp8266 data map'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
@@ -878,9 +1261,9 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'dataConstrain',
                         text: formatMessage({
-                            id: 'arduino.data.dataConstrain',
+                            id: 'arduinoEsp8266.data.dataConstrain',
                             default: 'constrain [DATA] between ([ARG0], [ARG1])',
-                            description: 'arduino data constrain'
+                            description: 'arduinoEsp8266 data constrain'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
@@ -902,9 +1285,9 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'dataConvert',
                         text: formatMessage({
-                            id: 'arduino.data.dataConvert',
+                            id: 'arduinoEsp8266.data.dataConvert',
                             default: 'convert [DATA] to [TYPE]',
-                            description: 'arduino data convert'
+                            description: 'arduinoEsp8266 data convert'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
@@ -923,9 +1306,9 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'dataConvertASCIICharacter',
                         text: formatMessage({
-                            id: 'arduino.data.dataConvertASCIICharacter',
+                            id: 'arduinoEsp8266.data.dataConvertASCIICharacter',
                             default: 'convert [DATA] to ASCII character',
-                            description: 'arduino data convert to ASCII character'
+                            description: 'arduinoEsp8266 data convert to ASCII character'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
@@ -939,9 +1322,9 @@ class ArduinoNanoDevice {
                     {
                         opcode: 'dataConvertASCIINumber',
                         text: formatMessage({
-                            id: 'arduino.data.dataConvertASCIINumber',
+                            id: 'arduinoEsp8266.data.dataConvertASCIINumber',
                             default: 'convert [DATA] to ASCII nubmer',
-                            description: 'arduino data convert to ASCII nubmer'
+                            description: 'arduinoEsp8266 data convert to ASCII nubmer'
                         }),
                         blockType: BlockType.REPORTER,
                         arguments: {
@@ -1021,4 +1404,4 @@ class ArduinoNanoDevice {
     }
 }
 
-module.exports = ArduinoNanoDevice;
+module.exports = ArduinoEsp8266Device;
