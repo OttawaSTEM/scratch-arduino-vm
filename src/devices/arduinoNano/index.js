@@ -639,6 +639,38 @@ class ArduinoNanoDevice {
                     },
                     '---',
                     {
+                        opcode: 'setPinTrigger',
+                        text: formatMessage({
+                            id: 'arduino.pins.setPinTrigger',
+                            default: 'Set ultrasonic [PIN] trigger',
+                            description: 'arduino set pin trigger ultrasonic'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pins',
+                                defaultValue: Pins.D0
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'setPinEcho',
+                        text: formatMessage({
+                            id: 'arduino.pins.setPinEcho',
+                            default: 'Set ultrasonic [PIN] echo',
+                            description: 'arduino set pin echo ultrasonic'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pins',
+                                defaultValue: Pins.D0
+                            }
+                        }
+                    },
+                    {
                         opcode: 'getDistance',
                         text: formatMessage({
                             id: 'arduino.pins.getDistance',
