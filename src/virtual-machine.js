@@ -765,7 +765,6 @@ class VirtualMachine extends EventEmitter {
      */
     _addSprite2 (sprite, zip) {
         // Validate & parse
-
         const sb2 = require('./serialization/sb2');
         return sb2.deserialize(sprite, this.runtime, true, zip)
             .then(({targets, extensions}) =>
