@@ -510,6 +510,411 @@ class ArduinoNanoDevice {
         ];
     }
 
+    get TONES_MENU() {
+        return [
+            {
+                text: 'C0',
+                value: 16.35
+            },
+            {
+                text: 'Db0',
+                value: 17.32
+            },
+            {
+                text: 'D0',
+                value: 18.35
+            },
+            {
+                text: 'Eb0',
+                value: 19.45
+            },
+            {
+                text: 'E0',
+                value: 20.6
+            },
+            {
+                text: 'F0',
+                value: 21.83
+            },
+            {
+                text: 'Gb0',
+                value: 23.12
+            },
+            {
+                text: 'G0',
+                value: 24.5
+            },
+            {
+                text: 'Ab0',
+                value: 25.96
+            },
+            {
+                text: 'A0',
+                value: 27.5
+            },
+            {
+                text: 'Bb0',
+                value: 29.14
+            },
+            {
+                text: 'B0',
+                value: 30.87
+            },
+            {
+                text: 'C1',
+                value: 32.7
+            },
+            {
+                text: 'Db1',
+                value: 34.65
+            },
+            {
+                text: 'D1',
+                value: 36.71
+            },
+            {
+                text: 'Eb1',
+                value: 38.89
+            },
+            {
+                text: 'E1',
+                value: 41.2
+            },
+            {
+                text: 'F1',
+                value: 43.65
+            },
+            {
+                text: 'Gb1',
+                value: 46.25
+            },
+            {
+                text: 'G1',
+                value: 49.0
+            },
+            {
+                text: 'Ab1',
+                value: 51.91
+            },
+            {
+                text: 'A1',
+                value: 55.0
+            },
+            {
+                text: 'Bb1',
+                value: 58.27
+            },
+            {
+                text: 'B1',
+                value: 61.74
+            },
+            {
+                text: 'C2',
+                value: 65.41
+            },
+            {
+                text: 'Db2',
+                value: 69.3
+            },
+            {
+                text: 'D2',
+                value: 73.42
+            },
+            {
+                text: 'Eb2',
+                value: 77.78
+            },
+            {
+                text: 'E2',
+                value: 82.41
+            },
+            {
+                text: 'F2',
+                value: 87.31
+            },
+            {
+                text: 'Gb2',
+                value: 92.5
+            },
+            {
+                text: 'G2',
+                value: 98.0
+            },
+            {
+                text: 'Ab2',
+                value: 103.83
+            },
+            {
+                text: 'A2',
+                value: 110.0
+            },
+            {
+                text: 'Bb2',
+                value: 116.54
+            },
+            {
+                text: 'B2',
+                value: 123.47
+            },
+            {
+                text: 'C3',
+                value: 130.81
+            },
+            {
+                text: 'Db3',
+                value: 138.59
+            },
+            {
+                text: 'D3',
+                value: 146.83
+            },
+            {
+                text: 'Eb3',
+                value: 155.56
+            },
+            {
+                text: 'E3',
+                value: 164.81
+            },
+            {
+                text: 'F3',
+                value: 174.61
+            },
+            {
+                text: 'Gb3',
+                value: 185.0
+            },
+            {
+                text: 'G3',
+                value: 196.0
+            },
+            {
+                text: 'Ab3',
+                value: 207.65
+            },
+            {
+                text: 'A3',
+                value: 220.0
+            },
+            {
+                text: 'Bb3',
+                value: 233.08
+            },
+            {
+                text: 'B3',
+                value: 246.94
+            },
+            {
+                text: 'C4',
+                value: 261.63
+            },
+            {
+                text: 'Db4',
+                value: 277.18
+            },
+            {
+                text: 'D4',
+                value: 293.66
+            },
+            {
+                text: 'Eb4',
+                value: 311.13
+            },
+            {
+                text: 'E4',
+                value: 329.63
+            },
+            {
+                text: 'F4',
+                value: 349.23
+            },
+            {
+                text: 'Gb4',
+                value: 369.99
+            },
+            {
+                text: 'G4',
+                value: 392.0
+            },
+            {
+                text: 'Ab4',
+                value: 415.3
+            },
+            {
+                text: 'A4',
+                value: 440.0
+            },
+            {
+                text: 'Bb4',
+                value: 466.16
+            },
+            {
+                text: 'B4',
+                value: 493.88
+            },
+            {
+                text: 'C5',
+                value: 523.25
+            },
+            {
+                text: 'Db5',
+                value: 554.37
+            },
+            {
+                text: 'D5',
+                value: 587.33
+            },
+            {
+                text: 'Eb5',
+                value: 622.25
+            },
+            {
+                text: 'E5',
+                value: 659.26
+            },
+            {
+                text: 'F5',
+                value: 698.46
+            },
+            {
+                text: 'Gb5',
+                value: 739.99
+            },
+            {
+                text: 'G5',
+                value: 783.99
+            },
+            {
+                text: 'Ab5',
+                value: 830.61
+            },
+            {
+                text: 'A5',
+                value: 880.0
+            },
+            {
+                text: 'Bb5',
+                value: 932.33
+            },
+            {
+                text: 'B5',
+                value: 987.77
+            },
+            {
+                text: 'C6',
+                value: 1046.5
+            },
+            {
+                text: 'Db6',
+                value: 1108.73
+            },
+            {
+                text: 'D6',
+                value: 1174.66
+            },
+            {
+                text: 'Eb6',
+                value: 1244.51
+            },
+            {
+                text: 'E6',
+                value: 1318.51
+            },
+            {
+                text: 'F6',
+                value: 1396.91
+            },
+            {
+                text: 'Gb6',
+                value: 1479.98
+            },
+            {
+                text: 'G6',
+                value: 1567.98
+            },
+            {
+                text: 'Ab6',
+                value: 1661.22
+            },
+            {
+                text: 'A6',
+                value: 1760.0
+            },
+            {
+                text: 'Bb6',
+                value: 1864.66
+            },
+            {
+                text: 'B6',
+                value: 1975.53
+            },
+            {
+                text: 'C7',
+                value: 2093.0
+            },
+            {
+                text: 'Db7',
+                value: 2217.46
+            },
+            {
+                text: 'D7',
+                value: 2349.32
+            },
+            {
+                text: 'Eb7',
+                value: 2489.02
+            },
+            {
+                text: 'E7',
+                value: 2637.02
+            },
+            {
+                text: 'F7',
+                value: 2793.83
+            },
+            {
+                text: 'Gb7',
+                value: 2959.96
+            },
+            {
+                text: 'G7',
+                value: 3135.96
+            },
+            {
+                text: 'Ab7',
+                value: 3322.44
+            },
+            {
+                text: 'A7',
+                value: 3520.0
+            },
+            {
+                text: 'Bb7',
+                value: 3729.31
+            },
+            {
+                text: 'B7',
+                value: 3951.07
+            },
+            {
+                text: 'C8',
+                value: 4186.01
+            },
+            {
+                text: 'Db8',
+                value: 4434.92
+            },
+            {
+                text: 'D8',
+                value: 4698.64
+            },
+            {
+                text: 'Eb8',
+                value: 4978.03
+            }
+        ]
+    }
+
     /**
      * Construct a set of Arduino blocks.
      * @param {Runtime} runtime - the Scratch Arduino runtime.
@@ -715,6 +1120,80 @@ class ArduinoNanoDevice {
                     },
                     '---',
                     {
+                        opcode: 'setPinBuzzer',
+                        text: formatMessage({
+                            id: 'arduino.pins.setPinBuzzer',
+                            default: 'Set buzzer [PIN]',
+                            description: 'arduino set pin buzzer'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            PIN: {
+                                type: ArgumentType.STRING,
+                                menu: 'pins',
+                                defaultValue: Pins.D13
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'setTone',
+                        text: formatMessage({
+                            id: 'arduino.pins.setTone',
+                            default: 'Play Tone [TONE] Duration [DRUATION]ms, Silent [SILENT]ms',
+                            description: 'Set play tone'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            TONE: {
+                                type: ArgumentType.STRING,
+                                menu: 'tones',
+                                defaultValue: 523.25
+                            },
+                            DRUATION: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: 200
+                            },
+                            SILENT: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: 500
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'bendTones',
+                        text: formatMessage({
+                            id: 'arduino.pins.setBendTone',
+                            default: 'Bend Tone from [INITIALTONE] to [FINALTONE] step [STEP] duration [DRUATION]ms Silent [SILENT]ms',
+                            description: 'Set bend tone'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            INITIALTONE: {
+                                type: ArgumentType.STRING,
+                                menu: 'tones',
+                                defaultValue: 16.35
+                            },
+                            FINALTONE: {
+                                type: ArgumentType.STRING,
+                                menu: 'tones',
+                                defaultValue: 4978.03
+                            },
+                            STEP: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: 20
+                            },
+                            DRUATION: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: 100
+                            },
+                            SILENT: {
+                                type: ArgumentType.NUMBER,
+                                defaultValue: 0
+                            }
+                        }
+                    },
+                    '---',
+                    {
                         opcode: 'attachInterrupt',
                         text: formatMessage({
                             id: 'arduino.pins.attachInterrupt',
@@ -773,6 +1252,9 @@ class ArduinoNanoDevice {
                     },
                     pwmPins: {
                         items: this.PWM_PINS_MENU
+                    },
+                    tones: {
+                        items: this.TONES_MENU
                     },
                     interruptPins: {
                         items: this.INTERRUPT_PINS_MENU
