@@ -11,7 +11,12 @@ const ArduinoPeripheral = require('../arduinoCommon/arduino-peripheral');
  * @readonly
  */
 const PNPID_LIST = [
-    // CH340
+    // https://github.com/arduino/Arduino/blob/1.8.0/hardware/arduino/avr/boards.txt#L51-L58
+    'USB\\VID_2341&PID_0043',
+    'USB\\VID_2341&PID_0001',
+    'USB\\VID_2A03&PID_0043',
+    'USB\\VID_2341&PID_0243',
+    // For chinese clones that use CH340
     'USB\\VID_1A86&PID_7523'
 ];
 
