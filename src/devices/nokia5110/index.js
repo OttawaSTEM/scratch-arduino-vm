@@ -356,7 +356,7 @@ class ArduinoNokia5110Device {
                         opcode: 'writeText',
                         text: formatMessage({
                             id: 'arduino.nokia5110.writeText',
-                            default: 'write text [TEXT]',
+                            default: 'write text [TEXT] x:[X] y:[Y]',
                             description: 'arduino nokia 5110 write text'
                         }),
                         blockType: BlockType.COMMAND,
@@ -364,6 +364,14 @@ class ArduinoNokia5110Device {
                             TEXT: {
                                 type: ArgumentType.STRING,
                                 defaultValue: 'Hi'
+                            },
+                            X: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '0'
+                            },
+                            Y: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '0'
                             }
                         }
                     },
