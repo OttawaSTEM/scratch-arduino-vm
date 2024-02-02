@@ -35,38 +35,9 @@ const DIVECE_OPT = {
     firmware: 'arduinoNano.standardFirmata.ino.hex'
 };
 
-const Pins = {
-    D0: '0',
-    D1: '1',
-    D2: '2',
-    D3: '3',
-    D4: '4',
-    D5: '5',
-    D6: '6',
-    D7: '7',
-    D8: '8',
-    D9: '9',
-    D10: '10',
-    D11: '11',
-    D12: '12',
-    D13: '13',
-    A0: 'A0',
-    A1: 'A1',
-    A2: 'A2',
-    A3: 'A3',
-    A4: 'A4',
-    A5: 'A5'
-};
-
-const Level = {
-    High: 'HIGH',
-    Low: 'LOW'
-};
-
-const SerialNo = {
-    Serial0: '0',
-    Serial1: '1',
-    Serial2: '2'
+const Color = {
+    black: 'BLACK',
+    white: 'WHITE'
 };
 
 const Buadrate = {
@@ -82,19 +53,6 @@ const Buadrate = {
 const Eol = {
     Warp: 'warp',
     NoWarp: 'noWarp'
-};
-
-const Mode = {
-    Input: 'INPUT',
-    Output: 'OUTPUT',
-    InputPullup: 'INPUT_PULLUP'
-};
-
-const InterrupMode = {
-    Rising: 'RISING',
-    Falling: 'FALLING',
-    Change: 'CHANGE',
-    Low: 'LOW'
 };
 
 const DataType = {
@@ -129,306 +87,80 @@ class ArduinoNokia5110Device {
         return 'nokia5110';
     }
 
-    get PINS_MENU() {
+    get COLOR_MENU() {
         return [
             {
-                text: '0',
-                value: Pins.D0
+                text: 'black',
+                value: Color.black
             },
             {
-                text: '1',
-                value: Pins.D1
-            },
-            {
-                text: '2',
-                value: Pins.D2
-            },
-            {
-                text: '3',
-                value: Pins.D3
-            },
-            {
-                text: '4',
-                value: Pins.D4
-            },
-            {
-                text: '5',
-                value: Pins.D5
-            },
-            {
-                text: '6',
-                value: Pins.D6
-            },
-            {
-                text: '7',
-                value: Pins.D7
-            },
-            {
-                text: '8',
-                value: Pins.D8
-            },
-            {
-                text: '9',
-                value: Pins.D9
-            },
-            {
-                text: '10',
-                value: Pins.D10
-            },
-            {
-                text: '11',
-                value: Pins.D11
-            },
-            {
-                text: '12',
-                value: Pins.D12
-            },
-            {
-                text: '13',
-                value: Pins.D13
-            },
-            {
-                text: 'A0',
-                value: Pins.A0
-            },
-            {
-                text: 'A1',
-                value: Pins.A1
-            },
-            {
-                text: 'A2',
-                value: Pins.A2
-            },
-            {
-                text: 'A3',
-                value: Pins.A3
-            },
-            {
-                text: 'A4',
-                value: Pins.A4
-            },
-            {
-                text: 'A5',
-                value: Pins.A5
+                text: 'white',
+                value: Color.white
             }
         ];
     }
 
-    get MODE_MENU() {
+    get PICTURES_MENU() {
         return [
             {
-                text: formatMessage({
-                    id: 'arduino.modeMenu.input',
-                    default: 'input',
-                    description: 'label for input pin mode'
-                }),
-                value: Mode.Input
+                text: 'smiley face',
+                value: 'smileyFace'
             },
             {
-                text: formatMessage({
-                    id: 'arduino.modeMenu.output',
-                    default: 'output',
-                    description: 'label for output pin mode'
-                }),
-                value: Mode.Output
+                text: 'heart',
+                value: 'heart'
             },
             {
-                text: formatMessage({
-                    id: 'arduino.modeMenu.inputPullup',
-                    default: 'input-pullup',
-                    description: 'label for input-pullup pin mode'
-                }),
-                value: Mode.InputPullup
-            }
-        ];
-    }
-
-    get DIGITAL_PINS_MENU() {
-        return [
-            {
-                text: '0',
-                value: Pins.D0
+                text: 'arrow left',
+                value: 'arrowL'
             },
             {
-                text: '1',
-                value: Pins.D1
+                text: 'arrow right',
+                value: 'arrowR'
             },
             {
-                text: '2',
-                value: Pins.D2
+                text: 'arrow up',
+                value: 'arrowU'
             },
             {
-                text: '3',
-                value: Pins.D3
+                text: 'arrow down',
+                value: 'arrowD'
             },
             {
-                text: '4',
-                value: Pins.D4
+                text: 'mushroom',
+                value: 'mushroom'
             },
             {
-                text: '5',
-                value: Pins.D5
+                text: 'music',
+                value: 'music'
             },
             {
-                text: '6',
-                value: Pins.D6
+                text: 'spaceship',
+                value: 'spaceship'
             },
             {
-                text: '7',
-                value: Pins.D7
+                text: 'controller',
+                value: 'controller'
             },
             {
-                text: '8',
-                value: Pins.D8
+                text: 'tree',
+                value: 'tree'
             },
             {
-                text: '9',
-                value: Pins.D9
+                text: 'cup',
+                value: 'cup'
             },
             {
-                text: '10',
-                value: Pins.D10
+                text: 'coin',
+                value: 'coin'
             },
             {
-                text: '11',
-                value: Pins.D11
+                text: 'player1',
+                value: 'player1'
             },
             {
-                text: '12',
-                value: Pins.D12
-            },
-            {
-                text: '13',
-                value: Pins.D13
-            }
-        ];
-    }
-
-    get ANALOG_PINS_MENU() {
-        return [
-            {
-                text: 'A0',
-                value: Pins.A0
-            },
-            {
-                text: 'A1',
-                value: Pins.A1
-            },
-            {
-                text: 'A2',
-                value: Pins.A2
-            },
-            {
-                text: 'A3',
-                value: Pins.A3
-            },
-            {
-                text: 'A4',
-                value: Pins.A4
-            },
-            {
-                text: 'A5',
-                value: Pins.A5
-            }
-        ];
-    }
-
-    get LEVEL_MENU() {
-        return [
-            {
-                text: formatMessage({
-                    id: 'arduino.levelMenu.high',
-                    default: 'high',
-                    description: 'label for high level'
-                }),
-                value: Level.High
-            },
-            {
-                text: formatMessage({
-                    id: 'arduino.levelMenu.low',
-                    default: 'low',
-                    description: 'label for low level'
-                }),
-                value: Level.Low
-            }
-        ];
-    }
-
-    get PWM_PINS_MENU() {
-        return [
-            {
-                text: '3',
-                value: Pins.D3
-            },
-            {
-                text: '5',
-                value: Pins.D5
-            },
-            {
-                text: '6',
-                value: Pins.D6
-            },
-            {
-                text: '9',
-                value: Pins.D9
-            },
-            {
-                text: '10',
-                value: Pins.D10
-            },
-            {
-                text: '11',
-                value: Pins.D11
-            }
-        ];
-    }
-
-    get INTERRUPT_PINS_MENU() {
-        return [
-            {
-                text: '2',
-                value: Pins.D2
-            },
-            {
-                text: '3',
-                value: Pins.D3
-            }
-        ];
-    }
-
-    get INTERRUP_MODE_MENU() {
-        return [
-            {
-                text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.risingEdge',
-                    default: 'rising edge',
-                    description: 'label for rising edge interrup'
-                }),
-                value: InterrupMode.Rising
-            },
-            {
-                text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.fallingEdge',
-                    default: 'falling edge',
-                    description: 'label for falling edge interrup'
-                }),
-                value: InterrupMode.Falling
-            },
-            {
-                text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.changeEdge',
-                    default: 'change edge',
-                    description: 'label for change edge interrup'
-                }),
-                value: InterrupMode.Change
-            },
-            {
-                text: formatMessage({
-                    id: 'arduino.InterrupModeMenu.low',
-                    default: 'low',
-                    description: 'label for low interrup'
-                }),
-                value: InterrupMode.Low
+                text: 'player2',
+                value: 'player2'
             }
         ];
     }
@@ -538,198 +270,158 @@ class ArduinoNokia5110Device {
     getInfo() {
         return [
             {
-                id: 'pin',
+                id: 'nokia5110',
                 name: formatMessage({
-                    id: 'arduino.category.pins',
-                    default: 'Pins',
-                    description: 'The name of the arduino device pin category'
+                    id: 'arduino.category.nokia5110',
+                    default: 'Nokia5110',
+                    description: 'The name of the arduino device nokia 5110 category'
                 }),
                 color1: '#009297',
                 color2: '#004B4C',
                 color3: '#004B4C',
                 blocks: [
                     {
-                        opcode: 'setPinMode',
+                        opcode: 'setInitial',
                         text: formatMessage({
-                            id: 'arduino.pins.setPinMode',
-                            default: 'set pin [PIN] mode [MODE]',
-                            description: 'arduino set pin mode'
+                            id: 'arduino.nokia5110.setInitial',
+                            default: 'initial nokia 5110 lcd',
+                            description: 'Initial Nokia 5110'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'pins',
-                                defaultValue: Pins.D0
-                            },
-                            MODE: {
-                                type: ArgumentType.STRING,
-                                menu: 'mode',
-                                defaultValue: Mode.Input
-                            }
                         }
                     },
                     {
-                        opcode: 'setDigitalOutput',
+                        opcode: 'setDisplay',
                         text: formatMessage({
-                            id: 'arduino.pins.setDigitalOutput',
-                            default: 'set digital pin [PIN] out [LEVEL]',
-                            description: 'arduino set digital pin out'
+                            id: 'arduino.nokia5110.setDisplay',
+                            default: 'disaply',
+                            description: 'Display Nokia 5110'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'pins',
-                                defaultValue: Pins.D0
-                            },
+                        }
+                    },
+                    {
+                        opcode: 'clearDisplay',
+                        text: formatMessage({
+                            id: 'arduino.nokia5110.clearDisplay',
+                            default: 'clear disaply',
+                            description: 'Clear display Nokia 5110'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                        }
+                    },
+                    {
+                        opcode: 'setContrast',
+                        text: formatMessage({
+                            id: 'arduino.nokia5110.setContrast',
+                            default: 'set contrast [LEVEL]',
+                            description: 'arduino set nokia 5110 contrast'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
                             LEVEL: {
-                                type: ArgumentType.STRING,
-                                menu: 'level',
-                                defaultValue: Level.High
-                            }
-                        }
-                    },
-                    {
-                        opcode: 'setPwmOutput',
-                        text: formatMessage({
-                            id: 'arduino.pins.setPwmOutput',
-                            default: 'set pwm pin [PIN] out [OUT]',
-                            description: 'arduino set pwm pin out'
-                        }),
-                        blockType: BlockType.COMMAND,
-                        arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'pwmPins',
-                                defaultValue: Pins.D3
-                            },
-                            OUT: {
                                 type: ArgumentType.UINT8_NUMBER,
-                                defaultValue: '255'
-                            }
-                        }
-                    },
-                    '---',
-                    {
-                        opcode: 'readDigitalPin',
-                        text: formatMessage({
-                            id: 'arduino.pins.readDigitalPin',
-                            default: 'read digital pin [PIN]',
-                            description: 'arduino read digital pin'
-                        }),
-                        blockType: BlockType.BOOLEAN,
-                        arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'digitalPins',
-                                defaultValue: Pins.D0
+                                defaultValue: '40'
                             }
                         }
                     },
                     {
-                        opcode: 'readAnalogPin',
+                        opcode: 'setCursor',
                         text: formatMessage({
-                            id: 'arduino.pins.readAnalogPin',
-                            default: 'read analog pin [PIN]',
-                            description: 'arduino read analog pin'
-                        }),
-                        blockType: BlockType.REPORTER,
-                        arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'analogPins',
-                                defaultValue: Pins.A0
-                            }
-                        }
-                    },
-                    '---',
-                    {
-                        opcode: 'setServoOutput',
-                        text: formatMessage({
-                            id: 'arduino.pins.setServoOutput',
-                            default: 'set servo pin [PIN] out [OUT]',
-                            description: 'arduino set servo pin out'
+                            id: 'arduino.nokia5110.setCursor',
+                            default: 'set cursor x:[X] y:[Y]',
+                            description: 'arduino set nokia 5110 cursor'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'pwmPins',
-                                defaultValue: Pins.D3
+                            X: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '0'
                             },
-                            OUT: {
-                                type: ArgumentType.ANGLE,
-                                defaultValue: '90'
+                            Y: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '0'
                             }
                         }
                     },
-                    '---',
                     {
-                        opcode: 'attachInterrupt',
+                        opcode: 'writeText',
                         text: formatMessage({
-                            id: 'arduino.pins.attachInterrupt',
-                            default: 'attach interrupt pin [PIN] mode [MODE] executes',
-                            description: 'arduino attach interrupt'
-                        }),
-                        blockType: BlockType.CONDITIONAL,
-                        arguments: {
-                            PIN: {
-                                type: ArgumentType.STRING,
-                                menu: 'interruptPins',
-                                defaultValue: Pins.D3
-                            },
-                            MODE: {
-                                type: ArgumentType.STRING,
-                                menu: 'interruptMode',
-                                defaultValue: InterrupMode.Rising
-                            }
-                        },
-                        programMode: [ProgramModeType.UPLOAD]
-                    },
-                    {
-                        opcode: 'detachInterrupt',
-                        text: formatMessage({
-                            id: 'arduino.pins.detachInterrupt',
-                            default: 'detach interrupt pin [PIN]',
-                            description: 'arduino attach interrupt'
+                            id: 'arduino.nokia5110.writeText',
+                            default: 'write text [TEXT]',
+                            description: 'arduino nokia 5110 write text'
                         }),
                         blockType: BlockType.COMMAND,
                         arguments: {
-                            PIN: {
+                            TEXT: {
                                 type: ArgumentType.STRING,
-                                menu: 'interruptPins',
-                                defaultValue: Pins.D3
+                                defaultValue: 'Hi'
                             }
-                        },
-                        programMode: [ProgramModeType.UPLOAD]
+                        }
+                    },
+                    {
+                        opcode: 'drawPixel',
+                        text: formatMessage({
+                            id: 'arduino.nokia5110.drawPixel',
+                            default: 'draw pixel x:[X] y:[Y] color:[COLOR]',
+                            description: 'arduino nokia 5110 draw pixel'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            X: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '10'
+                            },
+                            Y: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '10'
+                            },
+                            COLOR: {
+                                type: ArgumentType.STRING,
+                                menu: 'color',
+                                defaultValue: 'BLACK'
+                            }
+                        }
+                    },
+                    {
+                        opcode: 'drawPicture',
+                        text: formatMessage({
+                            id: 'arduino.nokia5110.drawPicture',
+                            default: 'draw picture x:[X] y:[Y] picture:[PICTURE] color:[COLOR]',
+                            description: 'arduino nokia 5110 draw picture'
+                        }),
+                        blockType: BlockType.COMMAND,
+                        arguments: {
+                            X: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '10'
+                            },
+                            Y: {
+                                type: ArgumentType.UINT8_NUMBER,
+                                defaultValue: '10'
+                            },
+                            PICTURE: {
+                                type: ArgumentType.STRING,
+                                menu: 'picture',
+                                defaultValue: 'smileyFace'
+                            },
+                            COLOR: {
+                                type: ArgumentType.STRING,
+                                menu: 'color',
+                                defaultValue: 'BLACK'
+                            }
+                        }
                     }
                 ],
                 menus: {
-                    pins: {
-                        items: this.PINS_MENU
+                    color: {
+                        items: this.COLOR_MENU
                     },
-                    mode: {
-                        items: this.MODE_MENU
-                    },
-                    digitalPins: {
-                        items: this.DIGITAL_PINS_MENU
-                    },
-                    analogPins: {
-                        items: this.ANALOG_PINS_MENU
-                    },
-                    level: {
-                        acceptReporters: true,
-                        items: this.LEVEL_MENU
-                    },
-                    pwmPins: {
-                        items: this.PWM_PINS_MENU
-                    },
-                    interruptPins: {
-                        items: this.INTERRUPT_PINS_MENU
-                    },
-                    interruptMode: {
-                        items: this.INTERRUP_MODE_MENU
+                    picture: {
+                        items: this.PICTURES_MENU
                     }
                 }
             },
