@@ -30,9 +30,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # - name: Repository Dispatch
-      #   uses: peter-evans/repository-dispatch@v3
-      #   with:
-      #     token: ${{ secrets.TOKEN_GITHUB_SECRET }}
-      #     repository: OttawaSTEM/scratch-arduino-gui
-      #     event-type: release_scratch_arduino_vm
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.TOKEN_GITHUB_SECRET }}
+          repository: OttawaSTEM/scratch-arduino
+          event-type: release_scratch_arduino_vm
