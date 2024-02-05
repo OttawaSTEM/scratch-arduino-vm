@@ -92,6 +92,35 @@ class ArduinoNokia5110Device {
         return 'nokia5110';
     }
 
+    get BUTTONS_MENU() {
+        return [
+            {
+                text: 'up',
+                value: 'upPin'
+            },
+            {
+                text: 'down',
+                value: 'downPin'
+            },
+            {
+                text: 'left',
+                value: 'leftPin'
+            },
+            {
+                text: 'right',
+                value: 'rightPin'
+            },
+            {
+                text: 'use',
+                value: 'usePin'
+            },
+            {
+                text: 'bb',
+                value: 'bbPin'
+            }
+        ];
+    }
+
     get COLOR_MENU() {
         return [
             {
@@ -352,6 +381,7 @@ class ArduinoNokia5110Device {
                             }
                         }
                     },
+                    '---',
                     {
                         opcode: 'writeText',
                         text: formatMessage({
@@ -427,9 +457,29 @@ class ArduinoNokia5110Device {
                                 defaultValue: 'BLACK'
                             }
                         }
+                    },
+                    '---',
+                    {
+                        opcode: 'readButton',
+                        text: formatMessage({
+                            id: 'arduino.nokia5110.readButton',
+                            default: 'press button [BUTTON]',
+                            description: 'Press up button'
+                        }),
+                        blockType: BlockType.BOOLEAN,
+                        arguments: {
+                            BUTTON: {
+                                type: ArgumentType.STRING,
+                                menu: 'button',
+                                defaultValue: 'upPin'
+                            }
+                        }
                     }
                 ],
                 menus: {
+                    button: {
+                        items: this.BUTTONS_MENU
+                    },
                     color: {
                         items: this.COLOR_MENU
                     },
