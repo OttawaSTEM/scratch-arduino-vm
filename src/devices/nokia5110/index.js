@@ -111,12 +111,12 @@ class ArduinoNokia5110Device {
                 value: 'rightPin'
             },
             {
-                text: 'use',
-                value: 'usePin'
+                text: 'a',
+                value: 'aPin'
             },
             {
-                text: 'bb',
-                value: 'bbPin'
+                text: 'b',
+                value: 'bPin'
             }
         ];
     }
